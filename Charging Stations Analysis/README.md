@@ -17,7 +17,7 @@ The data is scraped using Python Selenium or API requests, from the online sourc
   - PlugSurfing
 
 The data collected are charging station POI locations and the connectors available in each location, in the form of json files.
-Then they are flattened into tables and further cleansed and standardized across all data sources to extract only the desired fields, such as provider, country codes, AC/DC connector types, latitude and longitude.
+Then they are flattened into tables and further cleansed and standardized across all data sources to extract only the desired fields, such as provider, country codes, AC/DC connector types and counts, and latitude and longitude.
 
 ## Challenges
 1. The POI's combined from the different sources could some be the same POI but varying slightly in naming or coordinates. 
