@@ -33,7 +33,7 @@ The POI's from all sources are matched and combined to form a single table of un
 From the different versions of POI data for the same POI, the majority value for each field is used to represent the POI. 
 They are the Name, Address, AC charging, DC charging and ChargingProvider.
 
-The above explanation can be found in "Merging Datasets Technique.pptx"
+A visual presentation of the above explanation can be found in "Merging Datasets Technique.pptx"
 
 ## Dashboard
 PowerBI dashboard needs to be opened using a PowerBI Desktop app.
