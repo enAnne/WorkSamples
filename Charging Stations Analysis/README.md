@@ -25,6 +25,7 @@ Then they are flattened into tables and further cleansed and standardized across
 
 ## Solution approach for Challenge 1
 The duplicates in 2 data sources are identified using a technique of assignment optimization, where the goal is to minimize a score function in order to identify a match for each POI.
+
 The score is a weighted sum of the Haversine distance between the location coordinates, and Lavhenstein distance in the names and addresses.
 After the matching assignment is done, 2 POI's will be considered to be duplicates if the score is smaller than a certain threshold.
 The POI's from all sources are matched and combined to form a single table of unique POI's, where each row represents a unique POI but the columns contain the information coming from all the duplicates across the different sources.
