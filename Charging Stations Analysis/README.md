@@ -31,6 +31,7 @@ The POI's from all sources are then matched and combined to form a table of uniq
 From the different versions of POI data for the same POI, the majority value for each field is used to represent the POI. 
 They are the Name, Address, AC charging, DC charging and ChargingProvider.
 
-## Dashboard: 
+## Dashboard
 PowerBI dashboard needs to be opened using a PowerBI Desktop app.
 The dashboards in tabs "Data Source Comparison" and "Provider Coverage" summarizes the list of POI's above, and provides an overview of the duplication across the different sources.
+Screenshots are provided.
