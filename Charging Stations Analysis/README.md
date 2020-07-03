@@ -41,6 +41,6 @@ The PowerBI dashboard included needs to be opened using a PowerBI Desktop app.
 
 The "Data Source Comparison" page provides an overview of the duplication across the different sources. A high number of duplication means the POI data is well captured across the different sources and thus it increases the confidence level of the POI data quality.
 
-The "Provider Coverage" provides an overview of the charging companies coverage on a map. It is clear which areas have good EV charging network which areas are lacking.
+The "Provider Coverage" provides an overview of the charging companies coverage on a map. It is clear which areas have good EV charging network and which areas are lacking.
 
 Screenshots are provided in "Dashboard Screenshots.pptx"
