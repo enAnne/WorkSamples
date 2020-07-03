@@ -38,4 +38,5 @@ A visual presentation of the above explanation can be found in "Merging Datasets
 ## Dashboard
 PowerBI dashboard needs to be opened using a PowerBI Desktop app.
 The dashboards in tabs "Data Source Comparison" and "Provider Coverage" summarizes the list of POI's above, and provides an overview of the duplication across the different sources.
+
 Screenshots are provided in "Dashboard Screenshots.pptx"
