@@ -8,4 +8,8 @@ An analysis of the EV readiness of APAC countries, based on the coverage of publ
 An graph network analysis of who knows who, of up to 5 degrees of separation.
 
 ## Project 3: Database Summary
-Compile into a PDF a summary of meaningful data points of a table using visual statistics.
+Scans a large table structure and compiles into PDF a summary of its meaningful data points, using visual representation and statistics.
+
+## Project 4: PowerBI Data Model Reduction
+Summarize which tables or fields within the data model are unused and can be dropped, to minimize the PBIX file size.
+
