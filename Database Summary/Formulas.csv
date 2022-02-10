@@ -1,0 +1,587 @@
+,Table,Column,DataType,ValueType,Formula,Hidden,Naming
+11,Calendar,DateKey,string,calculated,"FORMAT(Calendar[Date],""yyyymmdd"")",0.0,Calendar[DateKey]
+10,Calendar,Date,dateTime,calculatedTableColumn,"CALENDAR(MIN(MIN(SFR_Leads[LeadCreatedDateKey]),
+                            MIN(MIN(SFR_TDS[TestDriveBookedFromDateKey]),
+                            MIN(MIN(SFR_Quotes[QuoDate]),
+                            MIN(MIN(SFR_Orders[OrdDate]),
+                            MIN(SFR_Sales[ZECUDateKey]))))),
+                        MAX(MAX(SFR_Leads[LeadCreatedDateKey]),
+                            MAX(MAX(SFR_TDS[TestDriveBookedFromDateKey]),
+                            MAX(MAX(SFR_Quotes[QuoDate]),
+                            MAX(MAX(SFR_Orders[OrdDate]),
+                            MAX(SFR_Sales[ZECUDateKey]))))))",0.0,Calendar[Date]
+8,Calendar,Last Updated,dateTime,measure,"DATE(2020,9,7)",0.0,Calendar[Last Updated]
+12,Calendar,Month,string,calculated,"FORMAT(Calendar[Date],""MMM"")",0.0,Calendar[Month]
+13,Calendar,Month_No,string,calculated,"FORMAT(Calendar[Date],""MM"")",0.0,Calendar[Month_No]
+14,Calendar,Month_Year_Flag,string,calculated,"FORMAT(Calendar[Date],""YYYYMM"")",0.0,Calendar[Month_Year_Flag]
+9,Calendar,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,"CALENDAR(MIN(MIN(SFR_Leads[LeadCreatedDateKey]),
+                            MIN(MIN(SFR_TDS[TestDriveBookedFromDateKey]),
+                            MIN(MIN(SFR_Quotes[QuoDate]),
+                            MIN(MIN(SFR_Orders[OrdDate]),
+                            MIN(SFR_Sales[ZECUDateKey]))))),
+                        MAX(MAX(SFR_Leads[LeadCreatedDateKey]),
+                            MAX(MAX(SFR_TDS[TestDriveBookedFromDateKey]),
+                            MAX(MAX(SFR_Quotes[QuoDate]),
+                            MAX(MAX(SFR_Orders[OrdDate]),
+                            MAX(SFR_Sales[ZECUDateKey]))))))",1.0,Calendar[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+15,Calendar,Year,string,calculated,"FORMAT(Calendar[Date],""yyyy"")",0.0,Calendar[Year]
+257,Country,Country,string,calculatedTableColumn,"FILTER (
+	DISTINCT (
+		SELECTCOLUMNS( SFR_Leads, 
+			""Country"", SFR_Leads[Country])
+		),
+		NOT ( ISBLANK ( [Country] ) )
+)",0.0,Country[Country]
+256,Country,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,"FILTER (
+	DISTINCT (
+		SELECTCOLUMNS( SFR_Leads, 
+			""Country"", SFR_Leads[Country])
+		),
+		NOT ( ISBLANK ( [Country] ) )
+)",1.0,Country[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+1,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72,Date,dateTime,calculatedTableColumn,"Calendar(Date(2015,1,1), Date(2015,1,1))",1.0,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72[Date]
+7,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72,Day,int64,calculated,"Calendar(Date(2015,1,1), Date(2015,1,1))",1.0,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72[Day]
+3,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72,MonthNo,int64,calculated,"Calendar(Date(2015,1,1), Date(2015,1,1))",1.0,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72[MonthNo]
+4,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72,Month,string,calculated,"Calendar(Date(2015,1,1), Date(2015,1,1))",1.0,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72[Month]
+5,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72,QuarterNo,int64,calculated,"Calendar(Date(2015,1,1), Date(2015,1,1))",1.0,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72[QuarterNo]
+6,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72,Quarter,string,calculated,"Calendar(Date(2015,1,1), Date(2015,1,1))",1.0,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72[Quarter]
+0,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,"Calendar(Date(2015,1,1), Date(2015,1,1))",1.0,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+2,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72,Year,int64,calculated,"Calendar(Date(2015,1,1), Date(2015,1,1))",1.0,DateTableTemplate_301df502-aa5e-4011-9581-7bc5edbb1e72[Year]
+72,Dealers,Country,string,tableColumn,,0.0,Dealers[Country]
+74,Dealers,DealerCode,string,tableColumn,,0.0,Dealers[DealerCode]
+67,Dealers,IsSelectedCountry,int64,measure,"CALCULATE( COUNT(Dealers[Country]), USERELATIONSHIP(Dealers[Country], Country[Country]) )",0.0,Dealers[IsSelectedCountry]
+70,Dealers,Latitude,double,tableColumn,,0.0,Dealers[Latitude]
+71,Dealers,Longitude,double,tableColumn,,0.0,Dealers[Longitude]
+68,Dealers,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,,1.0,Dealers[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+69,Dealers,ShortName,string,tableColumn,,0.0,Dealers[ShortName]
+73,Dealers,hasLinks,boolean,calculated,( COUNTROWS(RELATEDTABLE(SFR_Leads)) + COUNTROWS(RELATEDTABLE(SFR_Orders)) + COUNTROWS(RELATEDTABLE(SFR_Quotes)) + COUNTROWS(RELATEDTABLE(SFR_Sales))  + COUNTROWS(RELATEDTABLE(SFR_TDS)) ) > 0,0.0,Dealers[hasLinks]
+40,Funnel_Measures,Duration_DateRange,int64,measure,"DATEDIFF(MIN(Calendar[Date]),MAX(Calendar[Date]),DAY) + 1",0.0,Funnel_Measures[Duration_DateRange]
+57,Funnel_Measures,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,,1.0,Funnel_Measures[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+36,Funnel_Measures,f_Leads1_new,int64,measure,DISTINCTCOUNT(SFR_Leads[LeadName]),0.0,Funnel_Measures[f_Leads1_new]
+37,Funnel_Measures,f_Leads2_unique,double,measure,DISTINCTCOUNT(SFR_Leads[UCID]) / [f_Leads1_new],0.0,Funnel_Measures[f_Leads2_unique]
+38,Funnel_Measures,f_Leads3_inactive,double,measure,"
+var expired = CALCULATE( [f_Leads1_new],
+                            SFR_Leads[Lead_Expired] )
+var expiredPercent = DIVIDE( expired, [f_Leads1_new] )                            
+return IF( ISBLANK(expiredPercent), 0, expiredPercent )                            ",0.0,Funnel_Measures[f_Leads3_inactive]
+39,Funnel_Measures,f_Leads4_average,double,measure,"DIVIDE([f_Leads1_new], [Duration_DateRange]) * 30",0.0,Funnel_Measures[f_Leads4_average]
+51,Funnel_Measures,f_Orders1_new,int64,measure,"CALCULATE(DISTINCTCOUNT(SFR_Orders[LeadName]),                            
+                            USERELATIONSHIP('SFR_Orders'[int_LeadCreatedDateKey],Calendar[DateKey]))",0.0,Funnel_Measures[f_Orders1_new]
+45,Funnel_Measures,f_Quotes1_new,int64,measure,"CALCULATE( DISTINCTCOUNT(SFR_Quotes[LeadName]), 
+                        USERELATIONSHIP('SFR_Quotes'[int_LeadCreatedDateKey],Calendar[DateKey]))                              ",0.0,Funnel_Measures[f_Quotes1_new]
+46,Funnel_Measures,f_Quotes2_success,double,measure,"
+var success = CALCULATE( [f_Quotes1_new], 
+                            SFR_Quotes[QuoteStatus] = ""Order"" )
+var successPercent = DIVIDE( success, [f_Quotes1_new] )                            
+return IF(ISBLANK(successPercent), 0, successPercent)",0.0,Funnel_Measures[f_Quotes2_success]
+47,Funnel_Measures,f_Quotes3_rejected,double,measure,"
+var rejected = CALCULATE( [f_Quotes1_new],
+                            SFR_Quotes[QuoteStatus] = ""Lost"" )
+var rejectedPercent = DIVIDE( rejected, [f_Quotes1_new] )                            
+return IF( ISBLANK(rejectedPercent), 0, rejectedPercent )",0.0,Funnel_Measures[f_Quotes3_rejected]
+48,Funnel_Measures,f_Quotes4_expire,double,measure,"
+var expired = CALCULATE( [f_Quotes1_new],
+                            SFR_Quotes[Quote_Expired] )
+var expiredPercent = DIVIDE( expired, [f_Quotes1_new] )                            
+return IF( ISBLANK(expiredPercent), 0, expiredPercent )",0.0,Funnel_Measures[f_Quotes4_expire]
+49,Funnel_Measures,f_Sales1_new,int64,measure,"CALCULATE( DISTINCTCOUNT(SFR_Sales[LeadName]), 
+                            USERELATIONSHIP('SFR_Sales'[int_LeadCreatedDateKey],Calendar[DateKey])) ",0.0,Funnel_Measures[f_Sales1_new]
+50,Funnel_Measures,f_Sales2_claims,double,measure,"CALCULATE( SUM(SFR_Sales[ClaimCount]), 
+                                USERELATIONSHIP('SFR_Sales'[int_LeadCreatedDateKey],Calendar[DateKey]))",0.0,Funnel_Measures[f_Sales2_claims]
+56,Funnel_Measures,f_Sales3_TimeLead,string,measure,"
+var days = CALCULATE( AVERAGE(SFR_Leads[Time_Lead_Sale]),
+                                USERELATIONSHIP('SFR_Leads'[int_LeadCreatedDateKey],Calendar[DateKey]))
+return IF(ISBLANK(days), ""0 days"", ROUND(days,0) & "" days"")                                ",0.0,Funnel_Measures[f_Sales3_TimeLead]
+41,Funnel_Measures,f_TDS1_new,int64,measure,"CALCULATE( DISTINCTCOUNT(SFR_TDS[LeadName]), 
+                        USERELATIONSHIP('SFR_TDS'[int_LeadCreatedDateKey],Calendar[DateKey]))  ",0.0,Funnel_Measures[f_TDS1_new]
+42,Funnel_Measures,f_TDS2_cancelled,double,measure,"
+var cancelled = CALCULATE( [f_TDS1_new], 
+                            SFR_TDS[TDSstatus] = ""Cancelled"" )
+var cancelledPercent = DIVIDE( cancelled, [f_TDS1_new] )                            
+return IF( ISBLANK(cancelledPercent), 0, cancelledPercent )",0.0,Funnel_Measures[f_TDS2_cancelled]
+43,Funnel_Measures,f_TDS3_duration,string,measure,"CONCATENATE(ROUND(AVERAGE(SFR_TDS[TestDriveBookedDurationInHours]) * 60,0), "" min"")",0.0,Funnel_Measures[f_TDS3_duration]
+44,Funnel_Measures,f_TDS4_completed,double,measure,"
+var complete = CALCULATE( [f_TDS1_new], 
+                            SFR_TDS[TDSstatus] = ""Completed"" )
+var completePercent = DIVIDE( complete, [f_TDS1_new] )                            
+return IF( ISBLANK(completePercent), 0, completePercent )",0.0,Funnel_Measures[f_TDS4_completed]
+53,Funnel_Measures,f_Time1_lead_tds,string,measure,"CALCULATE( ROUND(AVERAGEX( SUMMARIZE (SFR_Leads, 
+                                                    SFR_Leads[LeadName], 
+                                                    ""latestTDS"", 
+                                                    MAX(SFR_Leads[Time_Lead_TDS])), 
+                                        [latestTDS] ),0)) & "" days""",0.0,Funnel_Measures[f_Time1_lead_tds]
+52,Funnel_Measures,f_Time2_tds_quote,string,measure,"CALCULATE( ROUND(AVERAGEX( SUMMARIZE (SFR_TDS, SFR_TDS[LeadName], 
+                                                    ""latestTDS"", 
+                                                    MIN(SFR_TDS[Time_TDS_Quote])), 
+                                        [latestTDS] ),0),                                 
+                                USERELATIONSHIP('SFR_TDS'[int_LeadCreatedDateKey],Calendar[DateKey] )) & "" days""",0.0,Funnel_Measures[f_Time2_tds_quote]
+54,Funnel_Measures,f_Time3_quote_order,string,measure,"CALCULATE( ROUND( AVERAGE(SFR_Quotes[Time_Quote_Order]),0),
+                                    USERELATIONSHIP('SFR_Quotes'[int_LeadCreatedDateKey],Calendar[DateKey])) & "" days""",0.0,Funnel_Measures[f_Time3_quote_order]
+55,Funnel_Measures,f_Time4_order_sale,string,measure,"CALCULATE( ROUND(AVERAGE(SFR_Orders[Time_Order_Sale]),0),
+                                USERELATIONSHIP('SFR_Orders'[int_LeadCreatedDateKey],Calendar[DateKey])) & "" days""",0.0,Funnel_Measures[f_Time4_order_sale]
+246,LeadSource,Country,string,calculatedTableColumn,"DISTINCT ( SELECTCOLUMNS( SFR_Leads, 
+                            ""LeadSource"", SFR_Leads[LeadSource],
+                            ""Country"", SFR_Leads[Country],
+                            ""LeadSource-Country"", SFR_Leads[LeadSource] & ""-"" & SFR_Leads[Country])
+                        )",0.0,LeadSource[Country]
+247,LeadSource,LeadSource-Country,string,calculatedTableColumn,"DISTINCT ( SELECTCOLUMNS( SFR_Leads, 
+                            ""LeadSource"", SFR_Leads[LeadSource],
+                            ""Country"", SFR_Leads[Country],
+                            ""LeadSource-Country"", SFR_Leads[LeadSource] & ""-"" & SFR_Leads[Country])
+                        )",0.0,LeadSource[LeadSource-Country]
+245,LeadSource,LeadSource,string,calculatedTableColumn,"DISTINCT ( SELECTCOLUMNS( SFR_Leads, 
+                            ""LeadSource"", SFR_Leads[LeadSource],
+                            ""Country"", SFR_Leads[Country],
+                            ""LeadSource-Country"", SFR_Leads[LeadSource] & ""-"" & SFR_Leads[Country])
+                        )",0.0,LeadSource[LeadSource]
+244,LeadSource,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,"DISTINCT ( SELECTCOLUMNS( SFR_Leads, 
+                            ""LeadSource"", SFR_Leads[LeadSource],
+                            ""Country"", SFR_Leads[Country],
+                            ""LeadSource-Country"", SFR_Leads[LeadSource] & ""-"" & SFR_Leads[Country])
+                        )",1.0,LeadSource[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+76,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca,Date,dateTime,calculatedTableColumn,"Calendar(Date(Year(MIN('SFR_Leads'[LeadCreatedDateKey])), 1, 1), Date(Year(MAX('SFR_Leads'[LeadCreatedDateKey])), 12, 31))",1.0,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca[Date]
+82,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca,Day,int64,calculated,"Calendar(Date(Year(MIN('SFR_Leads'[LeadCreatedDateKey])), 1, 1), Date(Year(MAX('SFR_Leads'[LeadCreatedDateKey])), 12, 31))",1.0,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca[Day]
+78,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca,MonthNo,int64,calculated,"Calendar(Date(Year(MIN('SFR_Leads'[LeadCreatedDateKey])), 1, 1), Date(Year(MAX('SFR_Leads'[LeadCreatedDateKey])), 12, 31))",1.0,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca[MonthNo]
+79,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca,Month,string,calculated,"Calendar(Date(Year(MIN('SFR_Leads'[LeadCreatedDateKey])), 1, 1), Date(Year(MAX('SFR_Leads'[LeadCreatedDateKey])), 12, 31))",1.0,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca[Month]
+80,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca,QuarterNo,int64,calculated,"Calendar(Date(Year(MIN('SFR_Leads'[LeadCreatedDateKey])), 1, 1), Date(Year(MAX('SFR_Leads'[LeadCreatedDateKey])), 12, 31))",1.0,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca[QuarterNo]
+81,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca,Quarter,string,calculated,"Calendar(Date(Year(MIN('SFR_Leads'[LeadCreatedDateKey])), 1, 1), Date(Year(MAX('SFR_Leads'[LeadCreatedDateKey])), 12, 31))",1.0,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca[Quarter]
+75,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,"Calendar(Date(Year(MIN('SFR_Leads'[LeadCreatedDateKey])), 1, 1), Date(Year(MAX('SFR_Leads'[LeadCreatedDateKey])), 12, 31))",1.0,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+77,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca,Year,int64,calculated,"Calendar(Date(Year(MIN('SFR_Leads'[LeadCreatedDateKey])), 1, 1), Date(Year(MAX('SFR_Leads'[LeadCreatedDateKey])), 12, 31))",1.0,LocalDateTable_088ba5c6-d018-4148-bf82-5bb4442299ca[Year]
+210,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914,Date,dateTime,calculatedTableColumn,"Calendar(Date(Year(MIN('SFR_TDS'[TestDriveBookedFromDateKey])), 1, 1), Date(Year(MAX('SFR_TDS'[TestDriveBookedFromDateKey])), 12, 31))",1.0,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914[Date]
+216,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914,Day,int64,calculated,"Calendar(Date(Year(MIN('SFR_TDS'[TestDriveBookedFromDateKey])), 1, 1), Date(Year(MAX('SFR_TDS'[TestDriveBookedFromDateKey])), 12, 31))",1.0,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914[Day]
+212,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914,MonthNo,int64,calculated,"Calendar(Date(Year(MIN('SFR_TDS'[TestDriveBookedFromDateKey])), 1, 1), Date(Year(MAX('SFR_TDS'[TestDriveBookedFromDateKey])), 12, 31))",1.0,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914[MonthNo]
+213,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914,Month,string,calculated,"Calendar(Date(Year(MIN('SFR_TDS'[TestDriveBookedFromDateKey])), 1, 1), Date(Year(MAX('SFR_TDS'[TestDriveBookedFromDateKey])), 12, 31))",1.0,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914[Month]
+214,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914,QuarterNo,int64,calculated,"Calendar(Date(Year(MIN('SFR_TDS'[TestDriveBookedFromDateKey])), 1, 1), Date(Year(MAX('SFR_TDS'[TestDriveBookedFromDateKey])), 12, 31))",1.0,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914[QuarterNo]
+215,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914,Quarter,string,calculated,"Calendar(Date(Year(MIN('SFR_TDS'[TestDriveBookedFromDateKey])), 1, 1), Date(Year(MAX('SFR_TDS'[TestDriveBookedFromDateKey])), 12, 31))",1.0,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914[Quarter]
+209,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,"Calendar(Date(Year(MIN('SFR_TDS'[TestDriveBookedFromDateKey])), 1, 1), Date(Year(MAX('SFR_TDS'[TestDriveBookedFromDateKey])), 12, 31))",1.0,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+211,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914,Year,int64,calculated,"Calendar(Date(Year(MIN('SFR_TDS'[TestDriveBookedFromDateKey])), 1, 1), Date(Year(MAX('SFR_TDS'[TestDriveBookedFromDateKey])), 12, 31))",1.0,LocalDateTable_60560300-461a-4c27-aaf9-b8e7cf0b4914[Year]
+249,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37,Date,dateTime,calculatedTableColumn,"Calendar(Date(Year(MIN('Calendar'[Date])), 1, 1), Date(Year(MAX('Calendar'[Date])), 12, 31))",1.0,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37[Date]
+255,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37,Day,int64,calculated,"Calendar(Date(Year(MIN('Calendar'[Date])), 1, 1), Date(Year(MAX('Calendar'[Date])), 12, 31))",1.0,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37[Day]
+251,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37,MonthNo,int64,calculated,"Calendar(Date(Year(MIN('Calendar'[Date])), 1, 1), Date(Year(MAX('Calendar'[Date])), 12, 31))",1.0,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37[MonthNo]
+252,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37,Month,string,calculated,"Calendar(Date(Year(MIN('Calendar'[Date])), 1, 1), Date(Year(MAX('Calendar'[Date])), 12, 31))",1.0,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37[Month]
+253,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37,QuarterNo,int64,calculated,"Calendar(Date(Year(MIN('Calendar'[Date])), 1, 1), Date(Year(MAX('Calendar'[Date])), 12, 31))",1.0,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37[QuarterNo]
+254,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37,Quarter,string,calculated,"Calendar(Date(Year(MIN('Calendar'[Date])), 1, 1), Date(Year(MAX('Calendar'[Date])), 12, 31))",1.0,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37[Quarter]
+248,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,"Calendar(Date(Year(MIN('Calendar'[Date])), 1, 1), Date(Year(MAX('Calendar'[Date])), 12, 31))",1.0,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+250,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37,Year,int64,calculated,"Calendar(Date(Year(MIN('Calendar'[Date])), 1, 1), Date(Year(MAX('Calendar'[Date])), 12, 31))",1.0,LocalDateTable_78376241-cf0b-4b3a-b266-b9a75e0e1d37[Year]
+148,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b,Date,dateTime,calculatedTableColumn,"Calendar(Date(Year(MIN('SFR_Quotes'[QuoDate])), 1, 1), Date(Year(MAX('SFR_Quotes'[QuoDate])), 12, 31))",1.0,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b[Date]
+154,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b,Day,int64,calculated,"Calendar(Date(Year(MIN('SFR_Quotes'[QuoDate])), 1, 1), Date(Year(MAX('SFR_Quotes'[QuoDate])), 12, 31))",1.0,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b[Day]
+150,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b,MonthNo,int64,calculated,"Calendar(Date(Year(MIN('SFR_Quotes'[QuoDate])), 1, 1), Date(Year(MAX('SFR_Quotes'[QuoDate])), 12, 31))",1.0,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b[MonthNo]
+151,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b,Month,string,calculated,"Calendar(Date(Year(MIN('SFR_Quotes'[QuoDate])), 1, 1), Date(Year(MAX('SFR_Quotes'[QuoDate])), 12, 31))",1.0,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b[Month]
+152,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b,QuarterNo,int64,calculated,"Calendar(Date(Year(MIN('SFR_Quotes'[QuoDate])), 1, 1), Date(Year(MAX('SFR_Quotes'[QuoDate])), 12, 31))",1.0,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b[QuarterNo]
+153,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b,Quarter,string,calculated,"Calendar(Date(Year(MIN('SFR_Quotes'[QuoDate])), 1, 1), Date(Year(MAX('SFR_Quotes'[QuoDate])), 12, 31))",1.0,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b[Quarter]
+147,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,"Calendar(Date(Year(MIN('SFR_Quotes'[QuoDate])), 1, 1), Date(Year(MAX('SFR_Quotes'[QuoDate])), 12, 31))",1.0,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+149,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b,Year,int64,calculated,"Calendar(Date(Year(MIN('SFR_Quotes'[QuoDate])), 1, 1), Date(Year(MAX('SFR_Quotes'[QuoDate])), 12, 31))",1.0,LocalDateTable_a5079e38-a26e-488d-8c97-792e06bd476b[Year]
+178,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8,Date,dateTime,calculatedTableColumn,"Calendar(Date(Year(MIN('SFR_Sales'[ZECUDateKey])), 1, 1), Date(Year(MAX('SFR_Sales'[ZECUDateKey])), 12, 31))",1.0,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8[Date]
+184,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8,Day,int64,calculated,"Calendar(Date(Year(MIN('SFR_Sales'[ZECUDateKey])), 1, 1), Date(Year(MAX('SFR_Sales'[ZECUDateKey])), 12, 31))",1.0,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8[Day]
+180,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8,MonthNo,int64,calculated,"Calendar(Date(Year(MIN('SFR_Sales'[ZECUDateKey])), 1, 1), Date(Year(MAX('SFR_Sales'[ZECUDateKey])), 12, 31))",1.0,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8[MonthNo]
+181,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8,Month,string,calculated,"Calendar(Date(Year(MIN('SFR_Sales'[ZECUDateKey])), 1, 1), Date(Year(MAX('SFR_Sales'[ZECUDateKey])), 12, 31))",1.0,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8[Month]
+182,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8,QuarterNo,int64,calculated,"Calendar(Date(Year(MIN('SFR_Sales'[ZECUDateKey])), 1, 1), Date(Year(MAX('SFR_Sales'[ZECUDateKey])), 12, 31))",1.0,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8[QuarterNo]
+183,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8,Quarter,string,calculated,"Calendar(Date(Year(MIN('SFR_Sales'[ZECUDateKey])), 1, 1), Date(Year(MAX('SFR_Sales'[ZECUDateKey])), 12, 31))",1.0,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8[Quarter]
+177,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,"Calendar(Date(Year(MIN('SFR_Sales'[ZECUDateKey])), 1, 1), Date(Year(MAX('SFR_Sales'[ZECUDateKey])), 12, 31))",1.0,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+179,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8,Year,int64,calculated,"Calendar(Date(Year(MIN('SFR_Sales'[ZECUDateKey])), 1, 1), Date(Year(MAX('SFR_Sales'[ZECUDateKey])), 12, 31))",1.0,LocalDateTable_bc00c214-8552-4edf-b498-a487fad4e3d8[Year]
+117,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf,Date,dateTime,calculatedTableColumn,"Calendar(Date(Year(MIN('SFR_Orders'[OrdDate])), 1, 1), Date(Year(MAX('SFR_Orders'[OrdDate])), 12, 31))",1.0,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf[Date]
+123,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf,Day,int64,calculated,"Calendar(Date(Year(MIN('SFR_Orders'[OrdDate])), 1, 1), Date(Year(MAX('SFR_Orders'[OrdDate])), 12, 31))",1.0,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf[Day]
+119,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf,MonthNo,int64,calculated,"Calendar(Date(Year(MIN('SFR_Orders'[OrdDate])), 1, 1), Date(Year(MAX('SFR_Orders'[OrdDate])), 12, 31))",1.0,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf[MonthNo]
+120,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf,Month,string,calculated,"Calendar(Date(Year(MIN('SFR_Orders'[OrdDate])), 1, 1), Date(Year(MAX('SFR_Orders'[OrdDate])), 12, 31))",1.0,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf[Month]
+121,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf,QuarterNo,int64,calculated,"Calendar(Date(Year(MIN('SFR_Orders'[OrdDate])), 1, 1), Date(Year(MAX('SFR_Orders'[OrdDate])), 12, 31))",1.0,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf[QuarterNo]
+122,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf,Quarter,string,calculated,"Calendar(Date(Year(MIN('SFR_Orders'[OrdDate])), 1, 1), Date(Year(MAX('SFR_Orders'[OrdDate])), 12, 31))",1.0,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf[Quarter]
+116,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,"Calendar(Date(Year(MIN('SFR_Orders'[OrdDate])), 1, 1), Date(Year(MAX('SFR_Orders'[OrdDate])), 12, 31))",1.0,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+118,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf,Year,int64,calculated,"Calendar(Date(Year(MIN('SFR_Orders'[OrdDate])), 1, 1), Date(Year(MAX('SFR_Orders'[OrdDate])), 12, 31))",1.0,LocalDateTable_da84381a-be78-4596-a223-329a4fb669cf[Year]
+64,Models,Baumuster,string,tableColumn,,0.0,Models[Baumuster]
+66,Models,Country,string,tableColumn,,0.0,Models[Country]
+60,Models,ModelGroup,string,tableColumn,,0.0,Models[ModelGroup]
+59,Models,Model,string,tableColumn,,0.0,Models[Model]
+58,Models,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,,1.0,Models[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+63,Models,TypeClassFamilyLong,string,tableColumn,,0.0,Models[TypeClassFamilyLong]
+62,Models,TypeClassFamily,string,tableColumn,,0.0,Models[TypeClassFamily]
+61,Models,TypeClass,string,tableColumn,,0.0,Models[TypeClass]
+65,Models,index,int64,tableColumn,,0.0,Models[index]
+27,SFR_Leads,Aging150 string,string,calculated,"
+var agingStr = IF(SFR_Leads[LeadAging150] = ""1000"", "">150"", SFR_Leads[LeadAging150] )
+return CONCATENATE(agingStr, "" days"")",0.0,SFR_Leads[Aging150 string]
+25,SFR_Leads,Country,string,tableColumn,,0.0,SFR_Leads[Country]
+29,SFR_Leads,LatestStatus,string,tableColumn,,0.0,SFR_Leads[LatestStatus]
+26,SFR_Leads,LeadAging150,string,tableColumn,,0.0,SFR_Leads[LeadAging150]
+19,SFR_Leads,LeadCreatedDateKey,dateTime,tableColumn,,0.0,SFR_Leads[LeadCreatedDateKey]
+33,SFR_Leads,LeadLostReason,string,tableColumn,,0.0,SFR_Leads[LeadLostReason]
+18,SFR_Leads,LeadName,string,tableColumn,,0.0,SFR_Leads[LeadName]
+35,SFR_Leads,LeadSource-Country,string,calculated,"SFR_Leads[LeadSource] & ""-"" & SFR_Leads[Country]",0.0,SFR_Leads[LeadSource-Country]
+34,SFR_Leads,LeadSource,string,tableColumn,,0.0,SFR_Leads[LeadSource]
+22,SFR_Leads,LeadStatus,string,tableColumn,,0.0,SFR_Leads[LeadStatus]
+24,SFR_Leads,Lead_Expired,boolean,tableColumn,,0.0,SFR_Leads[Lead_Expired]
+16,SFR_Leads,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,,1.0,SFR_Leads[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+30,SFR_Leads,StatusSorting,string,calculated,"SWITCH(SFR_Leads[LatestStatus],
+                        ""Lead - Open"",""1. Lead"",
+                        ""Lead - Lost"",""6. Lost"",
+                        ""TDS - Booked"",""2. TDS"",
+                        ""TDS - Cancelled"",""6. Lost"",
+                        ""TDS - Completed"",""2. TDS"",
+                        ""Quotation - Open"",""3. Quote"",
+                        ""Quotation - Lost"",""6. Lost"",
+                        ""Order - Open"",""4. Order"",
+                        ""Order - Lost"",""6. Lost"",
+                        ""Sale"",""5. Sale"",
+                        ""Sale - Reversed"",""6. Lost"")",0.0,SFR_Leads[StatusSorting]
+28,SFR_Leads,Time_Lead_Sale,double,tableColumn,,0.0,SFR_Leads[Time_Lead_Sale]
+23,SFR_Leads,Time_Lead_TDS,double,tableColumn,,0.0,SFR_Leads[Time_Lead_TDS]
+17,SFR_Leads,UCID,string,tableColumn,,0.0,SFR_Leads[UCID]
+21,SFR_Leads,int_LeadCreatedDateKey,string,tableColumn,,0.0,SFR_Leads[int_LeadCreatedDateKey]
+31,SFR_Leads,int_LeadLostDate,string,tableColumn,,0.0,SFR_Leads[int_LeadLostDate]
+32,SFR_Leads,leadDealer,string,tableColumn,,0.0,SFR_Leads[leadDealer]
+20,SFR_Leads,leadModel,string,tableColumn,,0.0,SFR_Leads[leadModel]
+93,SFR_Orders,Country,string,tableColumn,,0.0,SFR_Orders[Country]
+110,SFR_Orders,LatestStatus,string,tableColumn,,0.0,SFR_Orders[LatestStatus]
+92,SFR_Orders,LeadName,string,tableColumn,,0.0,SFR_Orders[LeadName]
+115,SFR_Orders,LeadSource-Country,string,calculated,"SFR_Orders[LeadSource] & ""-"" & SFR_Orders[Country]",0.0,SFR_Orders[LeadSource-Country]
+114,SFR_Orders,LeadSource,string,tableColumn,,0.0,SFR_Orders[LeadSource]
+94,SFR_Orders,ORDER_U,string,tableColumn,,0.0,SFR_Orders[ORDER_U]
+95,SFR_Orders,OrdDate,dateTime,tableColumn,,0.0,SFR_Orders[OrdDate]
+107,SFR_Orders,OrderAging360,string,tableColumn,,0.0,SFR_Orders[OrderAging360]
+106,SFR_Orders,OrderAging360_Display,string,calculated,"SWITCH( SFR_Orders[OrderAging360],
+                                ""<1 month"",""<1 month"",
+                                ""<2 months"",""<2 months"",
+                                ""<3 months"",""<3 months"",
+                                ""<6 months"",""<6 months"",
+                                ""6+ months"" )",0.0,SFR_Orders[OrderAging360_Display]
+109,SFR_Orders,OrderAging360_Sort,int64,calculated,"SWITCH( SFR_Orders[OrderAging360],
+                                ""<1 month"",1,
+                                ""<2 months"",2,
+                                ""<3 months"",3,
+                                ""<6 months"",4,
+                                ""<1 year"",5,
+                                "">1 year"",6 )",0.0,SFR_Orders[OrderAging360_Sort]
+103,SFR_Orders,OrderStatus,string,tableColumn,,0.0,SFR_Orders[OrderStatus]
+108,SFR_Orders,Previous Stages,string,calculated,"SWITCH( TRUE,
+                            SFR_Orders[hasLead] && SFR_Orders[hasTDS] && SFR_Orders[hasQuote], ""Has Lead, Test Drive, Quotation"",
+                            SFR_Orders[hasLead] && SFR_Orders[hasTDS], ""Has Lead, Test Drive"",
+                            SFR_Orders[hasLead] && SFR_Orders[hasQuote], ""Has Lead, Quotation"",
+                            SFR_Orders[hasTDS] && SFR_Orders[hasQuote], ""Has Test Drive, Quotation"",
+                            SFR_Orders[hasLead], ""Has Lead"",
+                            SFR_Orders[hasQuote], ""Has Quotation"",
+                            SFR_Orders[hasTDS], ""Has Test Drive"",
+                            ""No previous stages"")",0.0,SFR_Orders[Previous Stages]
+90,SFR_Orders,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,,1.0,SFR_Orders[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+111,SFR_Orders,StatusSorting,string,calculated,"SWITCH(SFR_Orders[LatestStatus],
+                        ""Lead - Open"",""1. Lead"",
+                        ""Lead - Lost"",""6. Lost"",
+                        ""TDS - Booked"",""2. TDS"",
+                        ""TDS - Cancelled"",""6. Lost"",
+                        ""TDS - Completed"",""2. TDS"",
+                        ""Quotation - Open"",""3. Quote"",
+                        ""Quotation - Lost"",""6. Lost"",
+                        ""Order - Open"",""1. Order"",
+                        ""Order - Lost"",""3. Lost"",
+                        ""Sale"",""2. Sale"",
+                        ""Sale - Reversed"",""3. Lost"")",0.0,SFR_Orders[StatusSorting]
+105,SFR_Orders,Time_Order_Sale,double,tableColumn,,0.0,SFR_Orders[Time_Order_Sale]
+101,SFR_Orders,hasInvoice,boolean,tableColumn,,0.0,SFR_Orders[hasInvoice]
+97,SFR_Orders,hasLead,boolean,tableColumn,,0.0,SFR_Orders[hasLead]
+100,SFR_Orders,hasOrder,boolean,tableColumn,,0.0,SFR_Orders[hasOrder]
+99,SFR_Orders,hasQuote,boolean,tableColumn,,0.0,SFR_Orders[hasQuote]
+98,SFR_Orders,hasTDS,boolean,tableColumn,,0.0,SFR_Orders[hasTDS]
+91,SFR_Orders,index,int64,tableColumn,,0.0,SFR_Orders[index]
+104,SFR_Orders,int_LeadCreatedDateKey,string,tableColumn,,0.0,SFR_Orders[int_LeadCreatedDateKey]
+96,SFR_Orders,int_OrdDate,string,tableColumn,,0.0,SFR_Orders[int_OrdDate]
+112,SFR_Orders,int_OrderLostDate,string,tableColumn,,0.0,SFR_Orders[int_OrderLostDate]
+113,SFR_Orders,quoteDealer,string,tableColumn,,0.0,SFR_Orders[quoteDealer]
+102,SFR_Orders,quoteModel,string,tableColumn,,0.0,SFR_Orders[quoteModel]
+127,SFR_Quotes,Country,string,tableColumn,,0.0,SFR_Quotes[Country]
+141,SFR_Quotes,LatestStatus,string,tableColumn,,0.0,SFR_Quotes[LatestStatus]
+126,SFR_Quotes,LeadName,string,tableColumn,,0.0,SFR_Quotes[LeadName]
+146,SFR_Quotes,LeadSource-Country,string,calculated,"SFR_Quotes[LeadSource] & ""-"" & SFR_Quotes[Country]",0.0,SFR_Quotes[LeadSource-Country]
+145,SFR_Quotes,LeadSource,string,tableColumn,,0.0,SFR_Quotes[LeadSource]
+138,SFR_Quotes,Previous Stages,string,calculated,"SWITCH( TRUE,
+                            SFR_Quotes[hasLead] && SFR_Quotes[hasTDS], ""Has Lead & Test Drive"",                           
+                            SFR_Quotes[hasLead], ""Has Lead"",                            
+                            SFR_Quotes[hasTDS], ""Has Test Drive"",
+                            ""No previous stages"")",0.0,SFR_Quotes[Previous Stages]
+128,SFR_Quotes,QUOTE_U,string,tableColumn,,0.0,SFR_Quotes[QUOTE_U]
+129,SFR_Quotes,QuoDate,dateTime,tableColumn,,0.0,SFR_Quotes[QuoDate]
+139,SFR_Quotes,QuoteAging360,string,tableColumn,,0.0,SFR_Quotes[QuoteAging360]
+140,SFR_Quotes,QuoteAging360_Display,string,calculated,"SWITCH( SFR_Quotes[QuoteAging360],
+                                ""<1 month"",""<1 month"",
+                                ""<2 months"",""<2 months"",
+                                ""<3 months"",""<3 months"",
+                                ""<6 months"",""<6 months"",
+                                ""6+ months"" )",0.0,SFR_Quotes[QuoteAging360_Display]
+134,SFR_Quotes,QuoteStatus,string,tableColumn,,0.0,SFR_Quotes[QuoteStatus]
+137,SFR_Quotes,Quote_Expired,boolean,tableColumn,,0.0,SFR_Quotes[Quote_Expired]
+124,SFR_Quotes,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,,1.0,SFR_Quotes[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+142,SFR_Quotes,StatusSorting,string,calculated,"SWITCH(SFR_Quotes[LatestStatus],                       
+                        ""Quotation - Open"",""1. Quote"",
+                        ""Quotation - Lost"",""4. Lost"",
+                        ""Order - Open"",""2. Order"",
+                        ""Order - Lost"",""4. Lost"",
+                        ""Sale"",""3. Sale"",
+                        ""Sale - Reversed"",""4. Lost"")",0.0,SFR_Quotes[StatusSorting]
+136,SFR_Quotes,Time_Quote_Order,double,tableColumn,,0.0,SFR_Quotes[Time_Quote_Order]
+131,SFR_Quotes,hasLead,boolean,tableColumn,,0.0,SFR_Quotes[hasLead]
+132,SFR_Quotes,hasTDS,boolean,tableColumn,,0.0,SFR_Quotes[hasTDS]
+125,SFR_Quotes,index,int64,tableColumn,,0.0,SFR_Quotes[index]
+135,SFR_Quotes,int_LeadCreatedDateKey,string,tableColumn,,0.0,SFR_Quotes[int_LeadCreatedDateKey]
+130,SFR_Quotes,int_QuoDate,string,tableColumn,,0.0,SFR_Quotes[int_QuoDate]
+143,SFR_Quotes,int_QuoteLostDate,string,tableColumn,,0.0,SFR_Quotes[int_QuoteLostDate]
+144,SFR_Quotes,quoteDealer,string,tableColumn,,0.0,SFR_Quotes[quoteDealer]
+133,SFR_Quotes,quoteModel,string,tableColumn,,0.0,SFR_Quotes[quoteModel]
+160,SFR_Sales,ClaimCount,double,tableColumn,,0.0,SFR_Sales[ClaimCount]
+158,SFR_Sales,Country,string,tableColumn,,0.0,SFR_Sales[Country]
+175,SFR_Sales,FleetType,string,tableColumn,,0.0,SFR_Sales[FleetType]
+170,SFR_Sales,IsRetailSale,boolean,tableColumn,,0.0,SFR_Sales[IsRetailSale]
+171,SFR_Sales,IsRetail_Display,string,calculated,"IF( SFR_Sales[IsRetailSale], ""Retail Sale"", ""Others"" )",0.0,SFR_Sales[IsRetail_Display]
+157,SFR_Sales,LeadName,string,tableColumn,,0.0,SFR_Sales[LeadName]
+174,SFR_Sales,LeadSource-Country,string,calculated,"SFR_Sales[LeadSource] & ""-"" & SFR_Sales[Country]",0.0,SFR_Sales[LeadSource-Country]
+173,SFR_Sales,LeadSource,string,tableColumn,,0.0,SFR_Sales[LeadSource]
+169,SFR_Sales,Previous Stages,string,calculated,"SWITCH( TRUE,
+                            SFR_Sales[hasLead] && SFR_Sales[hasTDS] && SFR_Sales[hasQuote] && SFR_Sales[hasOrder], ""Has Lead, Test Drive, Quotation, Order"",
+                            SFR_Sales[hasLead] && SFR_Sales[hasQuote] && SFR_Sales[hasOrder], ""Has Lead, Quotation, Order"",
+                            SFR_Sales[hasLead] && SFR_Sales[hasTDS] && SFR_Sales[hasOrder], ""Has Lead, Test Drive, Order"",
+                            SFR_Sales[hasLead] && SFR_Sales[hasTDS] && SFR_Sales[hasQuote], ""Has Lead, Test Drive, Quotation"",
+                            SFR_Sales[hasTDS] && SFR_Sales[hasQuote] && SFR_Sales[hasOrder], ""Has Test Drive, Quotation, Order"",
+                            SFR_Sales[hasLead] && SFR_Sales[hasOrder], ""Has Lead, Order"",
+                            SFR_Sales[hasLead] && SFR_Sales[hasTDS], ""Has Lead, Test Drive"",
+                            SFR_Sales[hasLead] && SFR_Sales[hasQuote], ""Has Lead, Quotation"",
+                            SFR_Sales[hasTDS] && SFR_Sales[hasQuote], ""Has Test Drive, Quotation"",
+                            SFR_Sales[hasTDS] && SFR_Sales[hasOrder], ""Has Test Drive, Order"",
+                            SFR_Sales[hasQuote] && SFR_Sales[hasOrder], ""Has Quotation, Order"",
+                            SFR_Sales[hasLead], ""Has Lead"",
+                            SFR_Sales[hasQuote], ""Has Quotation"",
+                            SFR_Sales[hasTDS], ""Has Test Drive"",
+                            SFR_Sales[hasOrder], ""Has Order"",
+                            ""No previous stages"")",0.0,SFR_Sales[Previous Stages]
+155,SFR_Sales,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,,1.0,SFR_Sales[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+176,SFR_Sales,VehicleUsage,string,tableColumn,,0.0,SFR_Sales[VehicleUsage]
+159,SFR_Sales,ZECUDateKey,dateTime,tableColumn,,0.0,SFR_Sales[ZECUDateKey]
+162,SFR_Sales,hasLead,boolean,tableColumn,,0.0,SFR_Sales[hasLead]
+165,SFR_Sales,hasOrder,boolean,tableColumn,,0.0,SFR_Sales[hasOrder]
+164,SFR_Sales,hasQuote,boolean,tableColumn,,0.0,SFR_Sales[hasQuote]
+163,SFR_Sales,hasTDS,boolean,tableColumn,,0.0,SFR_Sales[hasTDS]
+156,SFR_Sales,index,int64,tableColumn,,0.0,SFR_Sales[index]
+168,SFR_Sales,int_LeadCreatedDateKey,string,tableColumn,,0.0,SFR_Sales[int_LeadCreatedDateKey]
+161,SFR_Sales,int_ZECUDateKey,string,tableColumn,,0.0,SFR_Sales[int_ZECUDateKey]
+172,SFR_Sales,saleDealer,string,tableColumn,,0.0,SFR_Sales[saleDealer]
+167,SFR_Sales,saleModel,string,tableColumn,,0.0,SFR_Sales[saleModel]
+166,SFR_Sales,saleVIN,string,tableColumn,,0.0,SFR_Sales[saleVIN]
+186,SFR_TDS,AvgTestDrive,double,measure,"
+var tds = DISTINCTCOUNT(SFR_TDS[TestDriveBookingReference])
+var tdsAvg = DIVIDE(tds, [Duration_DateRange]) * 30
+return IF(ISBLANK(tdsAvg), 0, tdsAvg)",0.0,SFR_TDS[AvgTestDrive]
+188,SFR_TDS,AvgTestDrive_Distance,double,measure,"CALCULATE(AVERAGE(SFR_TDS[Distance]), SFR_TDS[TDSstatus] = ""Completed"", ALL('Calendar'))",0.0,SFR_TDS[AvgTestDrive_Distance]
+187,SFR_TDS,AvgTestDrive_Duration,double,measure,"CALCULATE(AVERAGE(SFR_TDS[TestDriveBookedDurationInHours]), SFR_TDS[TDSstatus] = ""Completed"", ALL('Calendar'))",0.0,SFR_TDS[AvgTestDrive_Duration]
+185,SFR_TDS,AvgTestDrive_Prev12Mths,double,measure,"
+var endDate = MAX('Calendar'[Date])
+var tdsPrev12m = CALCULATE(DISTINCTCOUNT(SFR_TDS[TestDriveBookingReference]), DATESINPERIOD('Calendar'[Date],endDate,-1,YEAR))
+var tdsAvg = DIVIDE(tdsPrev12m, 12)
+return IF(ISBLANK(tdsAvg), 0, tdsAvg)",0.0,SFR_TDS[AvgTestDrive_Prev12Mths]
+192,SFR_TDS,Country,string,tableColumn,,0.0,SFR_TDS[Country]
+196,SFR_TDS,Distance,double,tableColumn,,0.0,SFR_TDS[Distance]
+206,SFR_TDS,Empty,string,calculated,"""""",0.0,SFR_TDS[Empty]
+191,SFR_TDS,LeadName,string,tableColumn,,0.0,SFR_TDS[LeadName]
+208,SFR_TDS,LeadSource-Country,string,calculated,"SFR_TDS[LeadSource] & ""-"" & SFR_TDS[Country]",0.0,SFR_TDS[LeadSource-Country]
+207,SFR_TDS,LeadSource,string,tableColumn,,0.0,SFR_TDS[LeadSource]
+204,SFR_TDS,Previous Stages,string,calculated,"IF(SFR_TDS[hasLead], ""Has Lead"", ""No Lead"")",0.0,SFR_TDS[Previous Stages]
+189,SFR_TDS,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,,1.0,SFR_TDS[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+201,SFR_TDS,TDSstatus,string,tableColumn,,0.0,SFR_TDS[TDSstatus]
+195,SFR_TDS,TestDriveBookedDurationInHours,double,tableColumn,,0.0,SFR_TDS[TestDriveBookedDurationInHours]
+194,SFR_TDS,TestDriveBookedFromDateKey,dateTime,tableColumn,,0.0,SFR_TDS[TestDriveBookedFromDateKey]
+193,SFR_TDS,TestDriveBookingReference,string,tableColumn,,0.0,SFR_TDS[TestDriveBookingReference]
+197,SFR_TDS,TestDriveBookingTypeDescription,string,tableColumn,,0.0,SFR_TDS[TestDriveBookingTypeDescription]
+203,SFR_TDS,Time_TDS_Quote,double,tableColumn,,0.0,SFR_TDS[Time_TDS_Quote]
+199,SFR_TDS,hasLead,boolean,tableColumn,,0.0,SFR_TDS[hasLead]
+190,SFR_TDS,index,int64,tableColumn,,0.0,SFR_TDS[index]
+202,SFR_TDS,int_LeadCreatedDateKey,string,tableColumn,,0.0,SFR_TDS[int_LeadCreatedDateKey]
+198,SFR_TDS,int_TestDriveBookedFromDateKey,string,tableColumn,,0.0,SFR_TDS[int_TestDriveBookedFromDateKey]
+205,SFR_TDS,tdsDealer,double,tableColumn,,0.0,SFR_TDS[tdsDealer]
+200,SFR_TDS,tdsModel,string,tableColumn,,0.0,SFR_TDS[tdsModel]
+239,Snapshot_Measures,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,,1.0,Snapshot_Measures[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+234,Snapshot_Measures,s_Leads1_bankMonthly,int64,measure,"
+var datee = MAX(SFR_Leads[LeadCreatedDateKey])
+var selected_dealers = VALUES(Dealers[DealerCode])
+var selected_models = VALUES('Models'[Model])
+var selected_leadSources = VALUES('LeadSource'[LeadSource-Country])
+var selected_country = VALUES('Country'[Country])
+return CALCULATE( DISTINCTCOUNT(SFR_Leads[LeadName]), 
+                    ALL(SFR_Leads), 
+                    SFR_Leads[LeadStatus] = ""Open"",
+                    YEAR(SFR_Leads[LeadCreatedDateKey]) >= 2018,
+                    SFR_Leads[leadModel] in selected_models,
+                    SFR_Leads[leadDealer] in selected_dealers,
+                    SFR_Leads[LeadSource-Country] in selected_leadSources,
+                    SFR_Leads[Country] in selected_country,
+                    SFR_Leads[LeadCreatedDateKey] <= datee )
+",0.0,Snapshot_Measures[s_Leads1_bankMonthly]
+237,Snapshot_Measures,s_Leads2_lost,int64,measure,"CALCULATE( DISTINCTCOUNT(SFR_Leads[LeadName]), 
+                        SFR_Leads[LeadStatus] = ""Lost"",
+                        USERELATIONSHIP(SFR_Leads[int_LeadLostDate],'Calendar'[DateKey]))",0.0,Snapshot_Measures[s_Leads2_lost]
+228,Snapshot_Measures,s_Orders1_new,int64,measure,DISTINCTCOUNT(SFR_Orders[ORDER_U]),0.0,Snapshot_Measures[s_Orders1_new]
+235,Snapshot_Measures,s_Orders2_bank,int64,measure,"
+var maxDate = MAX('Calendar'[Date])
+return CALCULATE( DISTINCTCOUNT(SFR_Orders[ORDER_U]),                     
+                    ALLSELECTED(SFR_Orders), 
+                    ALL('Calendar'[Date]),
+                    SFR_Orders[OrderStatus] = ""Open"",
+                    YEAR(SFR_Orders[OrdDate]) >=2018,
+                    SFR_Orders[OrdDate] <= maxDate)
+           ",0.0,Snapshot_Measures[s_Orders2_bank]
+236,Snapshot_Measures,s_Orders3_lost,int64,measure,"
+var statusSelected = ALLSELECTED(SFR_Orders[OrderStatus])
+return CALCULATE( DISTINCTCOUNT(SFR_Orders[ORDER_U]), 
+                                SFR_Orders[OrderStatus] = ""Lost"",
+                                // SFR_Orders[OrderStatus] in statusSelected,
+                                USERELATIONSHIP(SFR_Orders[int_OrderLostDate],'Calendar'[DateKey]))",0.0,Snapshot_Measures[s_Orders3_lost]
+229,Snapshot_Measures,s_Orders4_aging,int64,measure,"
+var age = MAX(SFR_Orders[OrderAging360])
+var maxDate = MAX('Calendar'[Date])
+var minDate = MIN('Calendar'[Date])
+return CALCULATE( DISTINCTCOUNT(SFR_Orders[ORDER_U]), 
+                                ALLSELECTED(SFR_Orders), 
+                                SFR_Orders[OrderStatus] = ""Open"",
+                                YEAR(SFR_Orders[OrdDate]) >= 2018,
+                                SFR_Orders[OrdDate] <= maxDate,
+                                SFR_Orders[OrdDate] >= minDate,
+                                SFR_Orders[OrderAging360] = age ) ",0.0,Snapshot_Measures[s_Orders4_aging]
+217,Snapshot_Measures,s_Quotes1_new,int64,measure,DISTINCTCOUNT(SFR_Quotes[QUOTE_U]),0.0,Snapshot_Measures[s_Quotes1_new]
+218,Snapshot_Measures,s_Quotes2_success,double,measure,"
+var success = CALCULATE( [s_Quotes1_new], 
+                            SFR_Quotes[QuoteStatus] = ""Order"" )
+var successPercent = DIVIDE( success, [s_Quotes1_new] )                            
+return IF(ISBLANK(successPercent), 0, successPercent)",0.0,Snapshot_Measures[s_Quotes2_success]
+219,Snapshot_Measures,s_Quotes3_rejected,double,measure,"
+var rejected = CALCULATE( [s_Quotes1_new],
+                            SFR_Quotes[QuoteStatus] = ""Lost"" )
+return DIVIDE( rejected, [s_Quotes1_new] )",0.0,Snapshot_Measures[s_Quotes3_rejected]
+220,Snapshot_Measures,s_Quotes4_expire,double,measure,"
+var expired = CALCULATE( [s_Quotes1_new],
+                            SFR_Quotes[Quote_Expired] )
+var expiredPercent = DIVIDE( expired, [s_Quotes1_new] )                            
+return IF( ISBLANK(expiredPercent), 0, expiredPercent )",0.0,Snapshot_Measures[s_Quotes4_expire]
+230,Snapshot_Measures,s_Quotes5_bankMonthly,int64,measure,"
+var datee = MAX('Calendar'[Date])
+return CALCULATE( DISTINCTCOUNT(SFR_Quotes[QUOTE_U]), 
+                    ALLSELECTED(SFR_Quotes), 
+                    ALL('Calendar'[Date]),
+                    SFR_Quotes[QuoteStatus] = ""Open"",
+                    YEAR(SFR_Quotes[QuoDate]) >= 2018,
+                    SFR_Quotes[QuoDate] < datee )",0.0,Snapshot_Measures[s_Quotes5_bankMonthly]
+238,Snapshot_Measures,s_Quotes6_lost,int64,measure,"
+var statusSelected = ALLSELECTED(SFR_Quotes[QuoteStatus])
+return CALCULATE( DISTINCTCOUNT(SFR_Quotes[QUOTE_U]), 
+                                SFR_Quotes[QuoteStatus] = ""Lost"",
+                                SFR_Quotes[QuoteStatus] in statusSelected,
+                                USERELATIONSHIP(SFR_Quotes[int_QuoteLostDate],'Calendar'[DateKey]))                                ",0.0,Snapshot_Measures[s_Quotes6_lost]
+227,Snapshot_Measures,s_Sales1_retail,int64,measure,"CALCULATE([s_Sales2_new], SFR_Sales[IsRetailSale])",0.0,Snapshot_Measures[s_Sales1_retail]
+221,Snapshot_Measures,s_Sales2_new,int64,measure,DISTINCTCOUNT(SFR_Sales[saleVIN]),0.0,Snapshot_Measures[s_Sales2_new]
+222,Snapshot_Measures,s_Sales3_claims,double,measure,"CALCULATE( SUMX( SUMMARIZE (SFR_Leads, 
+                                                SFR_Leads[LeadName], 
+                                                ""claimsTotal"", 
+                                                AVERAGE(SFR_Sales[ClaimCount])), 
+                                    [claimsTotal] ),
+                                USERELATIONSHIP('SFR_Sales'[int_LeadCreatedDateKey],Calendar[DateKey]))",0.0,Snapshot_Measures[s_Sales3_claims]
+233,Snapshot_Measures,s_Sales4_timeLead,string,measure,"
+var days = CALCULATE( AVERAGE(SFR_Leads[Time_Lead_Sale]),
+                                USERELATIONSHIP('SFR_Leads'[int_LeadCreatedDateKey],Calendar[DateKey]))
+return IF(ISBLANK(days), ""0 days"", ROUND(days,0) & "" days"")                                ",0.0,Snapshot_Measures[s_Sales4_timeLead]
+231,Snapshot_Measures,s_Sales5_totalMonthly,int64,measure,"
+var dateMax = MAX(SFR_Sales[ZECUDateKey])
+var dateMin = MIN('Calendar'[Date])
+var selected_dealers = VALUES(Dealers[DealerCode])
+var selected_models = VALUES('Models'[Model])
+var selected_leadSources = VALUES('LeadSource'[LeadSource-Country])
+var selected_country = VALUES('Country'[Country])
+return CALCULATE( [s_Sales2_new], 
+                    ALL(SFR_Sales), 
+                    SFR_Sales[saleModel] in selected_models,                    
+                    OR( SFR_Sales[saleDealer] in selected_dealers, NOT ISFILTERED(Dealers[ShortName]) ),
+                    SFR_Sales[LeadSource-Country] in selected_leadSources,
+                    SFR_Sales[Country] in selected_country,
+                    SFR_Sales[ZECUDateKey] >= dateMin,
+                    SFR_Sales[ZECUDateKey] <= dateMax )
+
+                    ",0.0,Snapshot_Measures[s_Sales5_totalMonthly]
+232,Snapshot_Measures,s_Sales6_totalMonthly_Retail,int64,measure,"
+var dateMax = MAX(SFR_Sales[ZECUDateKey])
+var dateMin = MIN('Calendar'[Date])
+var selected_dealers = VALUES(Dealers[DealerCode])
+var selected_models = VALUES('Models'[Model])
+var selected_leadSources = VALUES('LeadSource'[LeadSource-Country])
+var selected_country = VALUES('Country'[Country])
+return CALCULATE( [s_Sales1_retail], 
+                    ALL(SFR_Sales), 
+                    SFR_Sales[saleModel] in selected_models,                    
+                    OR( SFR_Sales[saleDealer] in selected_dealers, NOT ISFILTERED(Dealers[ShortName]) ),
+                    SFR_Sales[LeadSource-Country] in selected_leadSources,
+                    SFR_Sales[Country] in selected_country,
+                    SFR_Sales[ZECUDateKey] >= dateMin,
+                    SFR_Sales[ZECUDateKey] <= dateMax )
+
+                    
+",0.0,Snapshot_Measures[s_Sales6_totalMonthly_Retail]
+223,Snapshot_Measures,s_TDS1_new,int64,measure,DISTINCTCOUNT(SFR_TDS[TestDriveBookingReference]),0.0,Snapshot_Measures[s_TDS1_new]
+224,Snapshot_Measures,s_TDS2_cancelled,double,measure,"
+var cancelled = CALCULATE( [s_TDS1_new], 
+                            SFR_TDS[TDSstatus] = ""Cancelled"" )
+var cancelledPercent = DIVIDE( cancelled, [s_TDS1_new] )                            
+return IF( ISBLANK(cancelledPercent), 0, cancelledPercent )",0.0,Snapshot_Measures[s_TDS2_cancelled]
+225,Snapshot_Measures,s_TDS3_duration,string,measure,"CONCATENATE(ROUND(AVERAGE(SFR_TDS[TestDriveBookedDurationInHours]) * 60,0), "" min"")",0.0,Snapshot_Measures[s_TDS3_duration]
+226,Snapshot_Measures,s_TDS4_completed,double,measure,"
+var complete = CALCULATE( [s_TDS1_new], 
+                            SFR_TDS[TDSstatus] = ""Completed"" )
+var completePercent = DIVIDE( complete, [s_TDS1_new] )                            
+return IF( ISBLANK(completePercent), 0, completePercent )",0.0,Snapshot_Measures[s_TDS4_completed]
+240,Stages Combo,Counts,int64,measure,"
+var fromNode = MAX('Stages Combo'[From])
+var toNode = MAX('Stages Combo'[To])
+
+var Lead_TDS = CALCULATE( [f_TDS1_new], SFR_TDS[hasLead] )
+var Lead_Quotation = CALCULATE( [f_Quotes1_new], SFR_Quotes[hasLead], NOT( SFR_Quotes[hasTDS] ) )
+var Lead_Order = CALCULATE( [f_Orders1_new], SFR_Orders[hasLead], NOT( SFR_Orders[hasTDS] ), NOT( SFR_Orders[hasQuote]) )
+var Lead_Sale = CALCULATE( [f_Sales1_new], SFR_Sales[hasLead], NOT( SFR_Sales[hasTDS] ), NOT( SFR_Sales[hasQuote]), NOT( SFR_Sales[hasOrder] ) )
+
+var TDS_Quotation = CALCULATE( [f_Quotes1_new], SFR_Quotes[hasTDS] )
+var TDS_Order = CALCULATE( [f_Orders1_new], SFR_Orders[hasTDS], NOT( SFR_Orders[hasQuote]) )
+var TDS_Sale = CALCULATE( [f_Sales1_new], SFR_Sales[hasTDS], NOT( SFR_Sales[hasQuote]), NOT( SFR_Sales[hasOrder] ) )
+
+var Quotation_Order = CALCULATE( [f_Orders1_new], SFR_Orders[hasQuote] )
+var Quotation_Sale = CALCULATE( [f_Sales1_new], SFR_Sales[hasQuote], NOT( SFR_Sales[hasOrder] ) )
+
+var Order_Sale = CALCULATE( [f_Sales1_new], SFR_Sales[hasOrder] )
+
+return SWITCH( fromNode, ""Lead"", SWITCH( toNode, ""TDS"", Lead_TDS,
+                                                ""Quotation"", Lead_Quotation,
+                                                ""Sale"", Lead_Order),
+                        ""TDS"", SWITCH( toNode, ""Quotation"", TDS_Quotation,
+                                                ""Order"", TDS_Order,
+                                                ""Sale"", TDS_Sale ),
+                        ""Quotation"", SWITCH( toNode, ""Order"", Quotation_Order,
+                                                    ""Sale"", Quotation_Sale ),
+                        ""Order"", SWITCH( toNode, ""Sale"", Order_Sale ))",0.0,Stages Combo[Counts]
+242,Stages Combo,From,string,tableColumn,,0.0,Stages Combo[From]
+241,Stages Combo,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,,1.0,Stages Combo[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+243,Stages Combo,To,string,tableColumn,,0.0,Stages Combo[To]
+85,Stages,Funnel,double,measure,"
+    SWITCH(MAX(Stages[Stage_ID])
+    ,1, 1
+    ,2, DIVIDE([f_TDS1_new], [f_Leads1_new])
+    ,3, DIVIDE([f_Quotes1_new], [f_Leads1_new])
+    ,4, DIVIDE([f_Orders1_new], [f_Leads1_new])
+    ,5, DIVIDE([f_Sales1_new], [f_Leads1_new])
+    )",0.0,Stages[Funnel]
+89,Stages,HasStage,string,tableColumn,,0.0,Stages[HasStage]
+86,Stages,RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61,int64,rowNumber,,1.0,Stages[RowNumber-2662979B-1795-4F74-8F37-6A1BA8059B61]
+83,Stages,Snapshot,int64,measure,"
+    SWITCH(MAX(Stages[Stage_ID])
+    ,1, [f_Leads1_new]
+    ,2, [s_TDS1_new]
+    ,3, [s_Quotes1_new]
+    ,4, [s_Orders1_new]
+    ,5, [s_Sales2_new]
+    )",0.0,Stages[Snapshot]
+87,Stages,Stage,string,tableColumn,,0.0,Stages[Stage]
+88,Stages,Stage_ID,int64,tableColumn,,0.0,Stages[Stage_ID]
+84,Stages,Total,int64,measure,"
+    SWITCH(MAX(Stages[Stage_ID])
+    ,1, [f_Leads1_new]
+    ,2, [f_TDS1_new]
+    ,3, [f_Quotes1_new] 
+    ,4, [f_Orders1_new]
+    ,5, [f_Sales1_new] 
+    )",0.0,Stages[Total]
