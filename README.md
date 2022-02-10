@@ -1,4 +1,4 @@
-# WorkSamples
+# Work Samples
 Here is a repository of my own hobby projects which I propose to my company for adoption.
 
 ## Project 1: Charging Station Analysis
