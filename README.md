@@ -15,3 +15,6 @@ Summarize which tables or fields within the data model are unused and can be dro
 
 ## Project 5: Geographical Bubble Map
 A map displaying the number of POI's which when zoomed in/out, dynamically distributes the bubbles for adjusted granularity.
+
+## Project 6: Treasure Hunt Assignment
+A clue-location generator for coordinating a simple treasure hunt game where multiple players/teams race against each other to the finish line.
