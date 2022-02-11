@@ -1,5 +1,5 @@
 # Treasure Hunt
-This is a treasure hunt clue-location assignment tool. This simple treasure hunt game is where there needs not be fascillitators stationed at each location, but just well placed clues at their locations leading the players to their next clue, and the game can run smoothly on it's own.
+This is a treasure hunt clue-location assignment tool. This simple treasure hunt game is where multiple teams/players race against each other through the same locations but in different sequence until they reach the final destination, and there needs not be fascillitators stationed at each location, but just well sequenced clues at their locations.
 
 # Challenge
 When creating a treasure hunt game where there are multiple teams/players racing each other, the sequence of clues for every team should be different from all others, so that the different teams do not get into the situation where they just follow each other through the game to reach the finish line.
