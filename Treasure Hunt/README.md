@@ -7,4 +7,5 @@ When creating a treasure hunt game where there are multiple teams/players racing
 # Solution
 Enter the number of teams in the game, and the python script will generate the assignment of clues to each location.
 When printing the clues on paper, each team should have it's own color, and it should be the same color for all clues for a team.
+
 The excel file "TreasureHunt.xlsx" shows an example of how to set up the clues and locations for a treasure hunt game.
