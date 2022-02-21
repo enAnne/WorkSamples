@@ -40,7 +40,8 @@ def choose_n_words(n=4):
     
     # Objective Function
     weights = five_letter_words.sum().rank().tolist() + nrWords*[0] 
-    # Set hard Constraint on NrWords - no need to minimize it
+    # Weight for each alphabet is its frequency
+    # Set a hard Constraint on NrWords - thus no need to give it a weight
     
     # Constraints:
     # 1. For every word: Sum(letter_asg[contained_in_word]) >= 5 * word_asg
@@ -52,6 +53,7 @@ def choose_n_words(n=4):
     coefficients = coefficients_1 + coefficients_2 + coefficients_3
     RHS = (nrWords + nrAlphabets) * [0] + [-n]
     
+    # Define Linear Programming Solver
     m = GEKKO(remote=False)
     x = m.Array(m.Var,nrWords+nrAlphabets,value=0,lb=0,ub=1,integer=True)
     m.qobj(weights,x=x,otype='max') # Objective function
@@ -59,13 +61,16 @@ def choose_n_words(n=4):
     m.options.solver = 1
     m.options.MAX_ITER = 30
     
+    # Run Solver
     start = time.time()
     m.solve(disp=False)
     end = time.time()
     
+    # Results
     not_covered = [var for x_i, var in zip(m._variables,variables) if len(var) <= 1 and x_i[0] < 0.5]
     words = [var for x_i, var in zip(m._variables,variables) if len(var) > 1 and x_i[0] > 0.5]
     
+    # Print Results
     print('Solution time: ', end - start)
     print(len(not_covered), " - ", not_covered)
     print(words)
