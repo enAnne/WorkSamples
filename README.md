@@ -20,4 +20,4 @@ Create a catalogue of the Data Model, listing all tables and fields used in the 
 A clue-location generator for coordinating a simple treasure hunt game where multiple players/teams race against each other to the finish line.
 
 ## Project 7: [Wordle](https://github.com/enAnne/WorkSamples/tree/master/Wordle)
-A Linear Program Optimizer to search for the best 4 words that covers the 20 most frequently used alphabets in all the 5-letter-words of the English Dictionary.
+A Linear Program Optimizer to search for the best 4 words that covers the 20 most frequently used alphabets in all 5-letter-words of the English Dictionary.
