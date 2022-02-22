@@ -15,6 +15,7 @@ import string
 from sklearn.preprocessing import MultiLabelBinarizer
 from gekko import GEKKO
 import time
+import re
 
 def choose_n_words(n=4):
     alphabets = list(string.ascii_lowercase)
@@ -75,12 +76,14 @@ def choose_n_words(n=4):
     print(len(not_covered), " - ", not_covered)
     print(words)
 
-def get_word(confirm='abc',maybe='x'):
+def permutate_word(position='.....',confirm='',maybe='x'):
     five_letter_words = pd.read_csv(r"C:\Users\eeann\OneDrive\Documents\GitHub\WorkSamples\Wordle\All Wordle Words.csv")
     five_letter_words['Word'] = five_letter_words.Word.str.lower()
     alphabets = list(string.ascii_lowercase)
     confirmNot = list(set(alphabets) - set(confirm+maybe)) 
+    five_letter_words = five_letter_words[five_letter_words.Word.apply(lambda x: re.findall(position, x) != [])]
     return five_letter_words[five_letter_words.Word.apply(lambda y: len(list(set(confirm)-set(y)))==0 and len(list(set(y)-set(confirmNot)))==len(set(y)))]
     
 choose_n_words(6)
-get_word('blie','x')
+permutate_word('.o...','ore','qwgjkzxvb')
+permutate_word(maybe='wfgjbxmaiu')
