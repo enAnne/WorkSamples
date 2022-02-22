@@ -10,20 +10,20 @@ Ideally, you'd want to uncover all the correct letters in as few tries as possib
 So what are the best words to spend the first n tries on?
 
 ## Solution
-n = 3  (3 words that cover 15 alphabets)
+**n = 3**  (3 words that cover 15 alphabets)
  - ['pithy', 'could', 'snare'] 
  - ['itchy', 'paler', 'sound'] 
  - ['crust', 'daily', 'phone']  
  - ['radio', 'guest', 'lynch'] 
  - ...
 
-n = 4  (4 words that cover 20 alphabets)
+**n = 4**  (4 words that cover 20 alphabets)
  - ['stock', 'viral', 'debug', 'nymph'] 
  - ['thump', 'candy', 'globe', 'frisk'] 
  - ['blimp', 'retch', 'sound', 'gawky'] 
  - ...
 
-n = 5  (5 words that cover 23 alphabets)
+**n = 5**  (5 words that cover 23 alphabets)
  - ['block', 'wight', 'vixen', 'safer', 'dumpy'] 
  - ['brave', 'swamp', 'dying', 'quoth', 'flack'] 
  - ['unwed', 'bravo', 'fritz', 'glyph', 'smack'] 
