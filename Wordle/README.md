@@ -28,6 +28,11 @@ So what are the best words to spend the first ***n*** tries on?
  - ['brave', 'swamp', 'dying', 'quoth', 'flack'] 
  - ['unwed', 'bravo', 'fritz', 'glyph', 'smack'] 
  - ...
+ 
+***n = 6*** &nbsp;&nbsp; *(6 words that cover 25 most frequent alphabets) for [Absurdle](https://qntm.org/files/absurdle/absurdle.html)*
+ - ['waxen', 'badge', 'vouch', 'jumpy', 'flask', 'fritz']
+ - ['fjord', 'nymph', 'quack', 'gavel', 'blaze', 'wrist']
+ - ...
 
 ## Solution Approach
 Using Linear Programming, set up a simple assignment model:
