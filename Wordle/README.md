@@ -34,7 +34,7 @@ Using Linear Programming, set up a simple assignment model:
 
 **Variables:**
  - assigned_l for every letter (26 alphabets)
- - assigned_w for every word (2317 5-letter-words in Wordle Dictionary)
+ - assigned_w for every word (2317 five-letter-words in Wordle Dictionary)
 
 **Objective Function:**
  - Maximize sum( weight_l * assigned_l )
