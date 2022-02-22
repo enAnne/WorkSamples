@@ -33,17 +33,17 @@ So what are the best words to spend the first n tries on?
 Using Linear Programming, set up a simple assignment model:
 
 **Variables:**
- - assigned_l for every letter (26 alphabets)
- - assigned_w for every word (2317 five-letter-words in Wordle Dictionary)
+ - assigned_l - for every letter (26 alphabets)
+ - assigned_w - for every word (2317 five-letter-words in Wordle Dictionary)
 
 **Objective Function:**
  - Maximize sum( weight_l * assigned_l )
  where weight_l is the ranking of letter frequency being used in words in the English Dictionary
 
 **Constraints:**
- 1. For every word (w): 	sum( assigned_l [letters contained in w] ) >= 5 * assigned_w
- 2. For every letter (l): 	sum( assigned_w [words containing l] ) >= assigned_l
- 3. Single constraint: 		sum( assigned_w ) <= n
+ 1. For every word (w):---sum( assigned_l [letters contained in w] ) >= 5 * assigned_w
+ 2. For every letter (l):---sum( assigned_w [words containing l] ) >= assigned_l
+ 3. Single constraint:------sum( assigned_w ) <= n
  
 
 Example: See "Linear Programming.xlsx" for illustration of letter Weights and Model Constraints
