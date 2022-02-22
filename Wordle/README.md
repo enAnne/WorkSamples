@@ -9,12 +9,15 @@ So what are the best words to spend the first 3 guesses on?
 
 ## Solution
 n = 3 
-3words that cover 15 alphabets - ['pithy', 'could', 'snare'] or ['itchy', 'paler', 'sound'] or ['crust', 'daily', 'phone'] or ['radio', 'guest', 'lynch']
+
+3 words that cover 15 alphabets - ['pithy', 'could', 'snare'] or ['itchy', 'paler', 'sound'] or ['crust', 'daily', 'phone'] or ['radio', 'guest', 'lynch']
 
 n = 4 
+
 4 words that cover 20 alphabets - ['stock', 'viral', 'debug', 'nymph'] or ['thump', 'candy', 'globe', 'frisk'] or ['blimp', 'retch', 'sound', 'gawky']
 
 n = 5
+
 5 words that cover 23 alphabets - ['block', 'wight', 'vixen', 'safer', 'dumpy'] or ['brave', 'swamp', 'dying', 'quoth', 'flack'] or ['unwed', 'bravo', 'fritz', 'glyph', 'smack']
 
 ## Solution Approach
@@ -33,4 +36,5 @@ Constraints:
  2. For every letter (l): 	sum( assigned_w [words containing l] ) >= assigned_l
  3. Single constraint: 		sum( assigned_w ) <= n
  
+
 Example: See "Linear Programming.xlsx" for illustration of letter Weights and Model Constraints
