@@ -1,10 +1,10 @@
 # Wordle
-The New York Times game - [Wordle](https://www.nytimes.com/games/wordle/index.html)
+[**Wordle**](https://www.nytimes.com/games/wordle/index.html) - The New York Times game
 
-The tougher version - [Absurdle](https://qntm.org/files/absurdle/absurdle.html)
+[**Absurdle**](https://qntm.org/files/absurdle/absurdle.html) - The tougher version
  
 ## Challenge
-You have 6 tries to guess the correct word.
+In Wordle, you have 6 tries to guess the correct word. In Absurdle - unlimited.
 The first few tries is where you uncover the letters that form the correct word.
 The last try is just a permutation of those letters.
 
