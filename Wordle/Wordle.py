@@ -75,5 +75,5 @@ def choose_n_words(n=4):
     print(len(not_covered), " - ", not_covered)
     print(words)
 
-choose_n_words(4)
+choose_n_words(5)
 
