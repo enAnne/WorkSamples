@@ -75,5 +75,12 @@ def choose_n_words(n=4):
     print(len(not_covered), " - ", not_covered)
     print(words)
 
-choose_n_words(5)
-
+def get_word(confirm='abc',maybe='x'):
+    five_letter_words = pd.read_csv(r"C:\Users\eeann\OneDrive\Documents\GitHub\WorkSamples\Wordle\All Wordle Words.csv")
+    five_letter_words['Word'] = five_letter_words.Word.str.lower()
+    alphabets = list(string.ascii_lowercase)
+    confirmNot = list(set(alphabets) - set(confirm+maybe)) 
+    return five_letter_words[five_letter_words.Word.apply(lambda y: len(list(set(confirm)-set(y)))==0 and len(list(set(y)-set(confirmNot)))==len(set(y)))]
+    
+choose_n_words(6)
+get_word('blie','x')

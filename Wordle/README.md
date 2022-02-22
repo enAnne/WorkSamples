@@ -1,6 +1,7 @@
 # Wordle
-The New York Times game - https://www.nytimes.com/games/wordle/index.html
-
+The New York Times game - [Wordle](https://www.nytimes.com/games/wordle/index.html)
+The tougher version - [Absurdle](https://qntm.org/files/absurdle/absurdle.html)
+ 
 ## Challenge
 You have 6 tries to guess the correct word.
 The first few tries is where you uncover the letters that form the correct word.
@@ -29,7 +30,7 @@ So what are the best words to spend the first ***n*** tries on?
  - ['unwed', 'bravo', 'fritz', 'glyph', 'smack'] 
  - ...
  
-***n = 6*** &nbsp;&nbsp; *(6 words that cover 25 most frequent alphabets) for [Absurdle](https://qntm.org/files/absurdle/absurdle.html)*
+***n = 6*** &nbsp;&nbsp; *(6 words that cover 25 most frequent alphabets)*
  - ['waxen', 'badge', 'vouch', 'jumpy', 'flask', 'fritz']
  - ['fjord', 'nymph', 'quack', 'gavel', 'blaze', 'wrist']
  - ['bawdy', 'froze', 'vixen', 'qualm', 'speck', 'fight']
