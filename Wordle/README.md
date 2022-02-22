@@ -7,23 +7,23 @@ The first few tries is where you uncover the letters that form the correct word.
 The last try is just a permutation of those letters.
 
 Ideally, you'd want to uncover all the correct letters in as few tries as possible.
-So what are the best words to spend the first n tries on?
+So what are the best words to spend the first ***n*** tries on?
 
 ## Solution
-**n = 3**  *(3 words that cover 15 most frequent alphabets)*
+***n = 3*** &nbsp;&nbsp; *(3 words that cover 15 most frequent alphabets)*
  - ['pithy', 'could', 'snare'] 
  - ['itchy', 'paler', 'sound'] 
  - ['crust', 'daily', 'phone']  
  - ['radio', 'guest', 'lynch'] 
  - ...
 
-**n = 4**  *(4 words that cover 20 most frequent alphabets)*
+***n = 4*** &nbsp;&nbsp; *(4 words that cover 20 most frequent alphabets)*
  - ['stock', 'viral', 'debug', 'nymph'] 
  - ['thump', 'candy', 'globe', 'frisk'] 
  - ['blimp', 'retch', 'sound', 'gawky'] 
  - ...
 
-**n = 5**  *(5 words that cover 23 most frequent alphabets)*
+***n = 5*** &nbsp;&nbsp; *(5 words that cover 23 most frequent alphabets)*
  - ['block', 'wight', 'vixen', 'safer', 'dumpy'] 
  - ['brave', 'swamp', 'dying', 'quoth', 'flack'] 
  - ['unwed', 'bravo', 'fritz', 'glyph', 'smack'] 
