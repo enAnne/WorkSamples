@@ -3,11 +3,11 @@
 [**Absurdle**](https://qntm.org/files/absurdle/absurdle.html) - The tougher version
  
 ## Challenge
-In Wordle, you have 6 tries to guess the correct word. In Absurdle - unlimited.__
-The first few tries is where you uncover the letters that form the correct word.__
+In Wordle, you have 6 tries to guess the correct word. In Absurdle - unlimited.<br />
+The first few tries is where you uncover the letters that form the correct word.<br />
 The last try is just a permutation of those letters.
 
-Ideally, you'd want to uncover all the correct letters in as few tries as possible.__
+Ideally, you'd want to uncover all the correct letters in as few tries as possible.<br />
 So what are the best words to spend the first ***n*** tries on?
 
 ## Solution
