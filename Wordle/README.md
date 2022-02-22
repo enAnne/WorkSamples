@@ -1,14 +1,13 @@
 # Wordle
-[**Wordle**](https://www.nytimes.com/games/wordle/index.html) - The New York Times game
-
+[**Wordle**](https://www.nytimes.com/games/wordle/index.html) - The New York Times game__
 [**Absurdle**](https://qntm.org/files/absurdle/absurdle.html) - The tougher version
  
 ## Challenge
-In Wordle, you have 6 tries to guess the correct word. In Absurdle - unlimited.
-The first few tries is where you uncover the letters that form the correct word.
+In Wordle, you have 6 tries to guess the correct word. In Absurdle - unlimited.__
+The first few tries is where you uncover the letters that form the correct word.__
 The last try is just a permutation of those letters.
 
-Ideally, you'd want to uncover all the correct letters in as few tries as possible.
+Ideally, you'd want to uncover all the correct letters in as few tries as possible.__
 So what are the best words to spend the first ***n*** tries on?
 
 ## Solution
