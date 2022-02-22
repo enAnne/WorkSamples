@@ -2,10 +2,12 @@
 The New York Times game - https://www.nytimes.com/games/wordle/index.html
 
 ## Challenge
-You have 6 tries to guess the correct word - so the 6th try should be the permutation of letters discovered in the first 5 tries.
+You have 6 tries to guess the correct word.
+The first few tries are to uncover the correct letters.
+The last try is just a permutation of those letters.
 
-Ideally, one is able to uncover all the correct letters in fewer tries.
-So what are the best words to spend the first 3 guesses on?
+Ideally uncover all the correct letters in as few tries as possible.
+So what are the best words to spend the first 3 tries on?
 
 ## Solution
 n = 3 
