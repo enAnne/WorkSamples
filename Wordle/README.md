@@ -3,11 +3,11 @@ The New York Times game - https://www.nytimes.com/games/wordle/index.html
 
 ## Challenge
 You have 6 tries to guess the correct word.
-The first few tries are to uncover the correct letters.
+The first few tries is where you uncover the letters that form the correct word.
 The last try is just a permutation of those letters.
 
-Ideally uncover all the correct letters in as few tries as possible.
-So what are the best words to spend the first 3 tries on?
+Ideally, you'd want to uncover all the correct letters in as few tries as possible.
+So what are the best words to spend the first n tries on?
 
 ## Solution
 n = 3 
@@ -23,7 +23,7 @@ n = 5
 5 words that cover 23 alphabets - ['block', 'wight', 'vixen', 'safer', 'dumpy'] - ['brave', 'swamp', 'dying', 'quoth', 'flack'] - ['unwed', 'bravo', 'fritz', 'glyph', 'smack']
 
 ## Solution Approach
-Using Linear Programming, set up the following model:
+Using Linear Programming, set up a simple assignment model:
 
 Variables: 
  - assigned_l for every letter (26 alphabets)
