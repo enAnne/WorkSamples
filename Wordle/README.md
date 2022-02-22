@@ -12,15 +12,15 @@ So what are the best words to spend the first 3 tries on?
 ## Solution
 n = 3 
 
-3 words that cover 15 alphabets - ['pithy', 'could', 'snare'] or ['itchy', 'paler', 'sound'] or ['crust', 'daily', 'phone'] or ['radio', 'guest', 'lynch']
+3 words that cover 15 alphabets - ['pithy', 'could', 'snare'] / ['itchy', 'paler', 'sound'] / ['crust', 'daily', 'phone'] / ['radio', 'guest', 'lynch']
 
 n = 4 
 
-4 words that cover 20 alphabets - ['stock', 'viral', 'debug', 'nymph'] or ['thump', 'candy', 'globe', 'frisk'] or ['blimp', 'retch', 'sound', 'gawky']
+4 words that cover 20 alphabets - ['stock', 'viral', 'debug', 'nymph'] / ['thump', 'candy', 'globe', 'frisk'] / ['blimp', 'retch', 'sound', 'gawky']
 
 n = 5
 
-5 words that cover 23 alphabets - ['block', 'wight', 'vixen', 'safer', 'dumpy'] or ['brave', 'swamp', 'dying', 'quoth', 'flack'] or ['unwed', 'bravo', 'fritz', 'glyph', 'smack']
+5 words that cover 23 alphabets - ['block', 'wight', 'vixen', 'safer', 'dumpy'] / ['brave', 'swamp', 'dying', 'quoth', 'flack'] / ['unwed', 'bravo', 'fritz', 'glyph', 'smack']
 
 ## Solution Approach
 Using Linear Programming, set up the following model:
