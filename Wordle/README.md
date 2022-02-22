@@ -1,5 +1,6 @@
 # Wordle
-The New York Times game - [Wordle](https://www.nytimes.com/games/wordle/index.html) **Enter**
+The New York Times game - [Wordle](https://www.nytimes.com/games/wordle/index.html)
+
 The tougher version - [Absurdle](https://qntm.org/files/absurdle/absurdle.html)
  
 ## Challenge
@@ -52,5 +53,5 @@ Using Linear Programming, set up a simple assignment model:
  2. For every letter (l): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum( assigned_w [words containing l] ) >= assigned_l
  3. Single constraint: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  sum( assigned_w ) <= n
  
-  **Enter**
+
 Example: See "Linear Programming.xlsx" for illustration of letter Weights and Model Constraints
