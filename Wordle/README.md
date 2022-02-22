@@ -41,9 +41,9 @@ Using Linear Programming, set up a simple assignment model:
  where weight_l is the ranking of letter frequency being used in words in the English Dictionary
 
 **Constraints:**
- 1. For every word (w): &nbsp&nbsp&nbsp&nbsp sum( assigned_l [letters contained in w] ) >= 5 * assigned_w
- 2. For every letter (l): &nbsp&nbsp&nbsp&nbsp sum( assigned_w [words containing l] ) >= assigned_l
- 3. Single constraint: &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp  sum( assigned_w ) <= n
+ 1. For every word (w): &nbsp;&nbsp;&nbsp;&nbsp; sum( assigned_l [letters contained in w] ) >= 5 * assigned_w
+ 2. For every letter (l): &nbsp;&nbsp;&nbsp;&nbsp; sum( assigned_w [words containing l] ) >= assigned_l
+ 3. Single constraint: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  sum( assigned_w ) <= n
  
 
 Example: See "Linear Programming.xlsx" for illustration of letter Weights and Model Constraints
