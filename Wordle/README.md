@@ -32,6 +32,7 @@ So what are the best words to spend the first ***n*** tries on?
 ***n = 6*** &nbsp;&nbsp; *(6 words that cover 25 most frequent alphabets) for [Absurdle](https://qntm.org/files/absurdle/absurdle.html)*
  - ['waxen', 'badge', 'vouch', 'jumpy', 'flask', 'fritz']
  - ['fjord', 'nymph', 'quack', 'gavel', 'blaze', 'wrist']
+ - ['bawdy', 'froze', 'vixen', 'qualm', 'speck', 'fight']
  - ...
 
 ## Solution Approach
