@@ -1,5 +1,5 @@
 # Wordle
-[**Wordle**](https://www.nytimes.com/games/wordle/index.html) - The New York Times game__
+[**Wordle**](https://www.nytimes.com/games/wordle/index.html) - The New York Times game <br />
 [**Absurdle**](https://qntm.org/files/absurdle/absurdle.html) - The tougher version
  
 ## Challenge
