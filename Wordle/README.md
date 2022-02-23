@@ -24,17 +24,11 @@ So what are the best words to spend the first ***n*** tries on?
  - ['blimp', 'retch', 'sound', 'gawky'] 
  - ...
 
-***n = 5*** &nbsp;&nbsp; *(5 words that cover 23 most frequent alphabets)*
- - ['block', 'wight', 'vixen', 'safer', 'dumpy'] 
- - ['brave', 'swamp', 'dying', 'quoth', 'flack'] 
- - ['unwed', 'bravo', 'fritz', 'glyph', 'smack'] 
- - ...
+***n = 5*** &nbsp;&nbsp; *(5 words that cover 24 most frequent alphabets)*
+ - ['dwarf', 'black', 'ghost', 'vixen', 'jumpy']
  
-***n = 6*** &nbsp;&nbsp; *(6 words that cover 25 most frequent alphabets)*
- - ['waxen', 'badge', 'vouch', 'jumpy', 'flask', 'fritz']
- - ['fjord', 'nymph', 'quack', 'gavel', 'blaze', 'wrist']
- - ['bawdy', 'froze', 'vixen', 'qualm', 'speck', 'fight']
- - ...
+***n = 6*** &nbsp;&nbsp; *(6 words that cover all alphabets)*
+ - ['fjord', 'gawky', 'waltz', 'chump', 'vixen', 'squib']
 
 ## Solution Approach
 Using Linear Programming, set up a simple assignment model:

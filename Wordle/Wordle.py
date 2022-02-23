@@ -32,7 +32,7 @@ def choose_n_words(n=4):
     
     #five_letter_words = five_letter_words[five_letter_words.index.isin(['charm','chasm','crave','funky','juice','moist','stalk','world','wrong','zebra','wrong'])]
     five_letter_words = five_letter_words[five_letter_words.sum(axis=1)==5] # No repeating characters
-    five_letter_words = five_letter_words.sample(n=500, random_state=random.randint(1,1000))
+    five_letter_words = five_letter_words.sample(n=500, random_state=random.randint(1,1000)) # Narrow down the search space
     
     # Variables
     variables = alphabets + five_letter_words.index.tolist()
@@ -41,7 +41,7 @@ def choose_n_words(n=4):
     
     # Objective Function
     weights = five_letter_words.sum().rank().tolist() + nrWords*[0] 
-    # Weight for each alphabet is its frequency
+    # Weight for each alphabet is its frequency in the English dictionary
     # Set a hard Constraint on NrWords - thus no need to give it a weight
     
     # Constraints:
@@ -84,6 +84,6 @@ def permutate_word(position='.....',confirm='',maybe='x'):
     five_letter_words = five_letter_words[five_letter_words.Word.apply(lambda x: re.findall(position, x) != [])]
     return five_letter_words[five_letter_words.Word.apply(lambda y: len(list(set(confirm)-set(y)))==0 and len(list(set(y)-set(confirmNot)))==len(set(y)))]
     
-choose_n_words(6)
+choose_n_words(5)
 permutate_word('.o...','ore','qwgjkzxvb')
 permutate_word(maybe='wfgjbxmaiu')
