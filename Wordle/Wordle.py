@@ -73,7 +73,7 @@ def choose_n_words(n=4,iters=30):
     
     # Print Results
     print('Solution time: ', end - start)
-    print(len(not_covered), " - ", not_covered)
+    print(len(not_covered), "uncovered letters - ", not_covered)
     print(words)
 
 def permutate_word(position='.....',confirm='',maybe='x'):
