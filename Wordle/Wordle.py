@@ -17,7 +17,7 @@ from gekko import GEKKO
 import time
 import re
 
-def choose_n_words(n=4):
+def choose_n_words(n=4,iters=30):
     alphabets = list(string.ascii_lowercase)
     five_letter_words = pd.read_csv(r"C:\Users\eeann\OneDrive\Documents\GitHub\WorkSamples\Wordle\All Wordle Words.csv")
     five_letter_words['Word'] = five_letter_words.Word.str.lower()
@@ -32,7 +32,7 @@ def choose_n_words(n=4):
     
     #five_letter_words = five_letter_words[five_letter_words.index.isin(['charm','chasm','crave','funky','juice','moist','stalk','world','wrong','zebra','wrong'])]
     five_letter_words = five_letter_words[five_letter_words.sum(axis=1)==5] # No repeating characters
-    five_letter_words = five_letter_words.sample(n=500, random_state=random.randint(1,1000)) # Narrow down the search space
+    #five_letter_words = five_letter_words.sample(n=500, random_state=random.randint(1,1000)) # Narrow down the search space
     
     # Variables
     variables = alphabets + five_letter_words.index.tolist()
@@ -60,7 +60,7 @@ def choose_n_words(n=4):
     m.qobj(weights,x=x,otype='max') # Objective function
     m.axb(coefficients,RHS,x=x,etype='>=')
     m.options.solver = 1
-    m.options.MAX_ITER = 30
+    m.options.MAX_ITER = iters
     
     # Run Solver
     start = time.time()
@@ -84,6 +84,6 @@ def permutate_word(position='.....',confirm='',maybe='x'):
     five_letter_words = five_letter_words[five_letter_words.Word.apply(lambda x: re.findall(position, x) != [])]
     return five_letter_words[five_letter_words.Word.apply(lambda y: len(list(set(confirm)-set(y)))==0 and len(list(set(y)-set(confirmNot)))==len(set(y)))]
     
-choose_n_words(5)
-permutate_word('.o...','ore','qwgjkzxvb')
+choose_n_words(5,100)
+permutate_word('.....','poy','')
 permutate_word(maybe='wfgjbxmaiu')
