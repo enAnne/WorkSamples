@@ -44,20 +44,22 @@ def elementExists(driver,eType,eString,tWait=0,maxWait=10):
 def getPiece(img_src):
     return img_src.replace("https://images.neopets.com/medieval/shapeshifter/","").replace(".gif","")
     
-# Open browser
-driver = webdriver.Firefox(executable_path=r"C:\Users\eeann\AppData\Local\Microsoft\WindowsApps\geckodriver.exe")
-driver.maximize_window()
-# Login to Neopets account
-driver.get("https://www.neopets.com")
-getElement(driver,By.XPATH,"//button[text()='Login']").click()
-getElement(driver,By.NAME,"username").send_keys('enAnne') 
-getElement(driver,By.NAME,'password').send_keys('en900804') 
-getElement(driver,By.XPATH,"//input[@id='loginButton']").click()
-# Go to ShapeShifter page
-time.sleep(2)
-driver.get("https://www.neopets.com/medieval/shapeshifter.phtml")
+def reopenBrowser():
+    # Open browser
+    driver = webdriver.Firefox(executable_path=r"C:\Users\eeann\AppData\Local\Microsoft\WindowsApps\geckodriver.exe")
+    driver.maximize_window()
+    # Login to Neopets account
+    driver.get("https://www.neopets.com")
+    getElement(driver,By.XPATH,"//button[text()='Login']").click()
+    getElement(driver,By.NAME,"username").send_keys('enAnne') 
+    getElement(driver,By.NAME,'password').send_keys('en900804') 
+    getElement(driver,By.XPATH,"//input[@id='loginButton']").click()
+    # Go to ShapeShifter page
+    time.sleep(2)
+    driver.get("https://www.neopets.com/medieval/shapeshifter.phtml")
+    return driver
 
-def start_game(loop = True):
+def start_game(driver,loop = True):
     
     """=================================================================
     # Getting Puzzle
@@ -216,6 +218,7 @@ def start_game(loop = True):
                 col = shape_cell.col.values[0]
                 print('i'+str(col)+'_'+str(row))
                 e = getElement(driver,By.NAME,'i'+str(col)+'_'+str(row))
+                time.sleep(1)
                 a.move_to_element(e).perform()
                 e.click()
     end = time.time()
@@ -223,10 +226,11 @@ def start_game(loop = True):
     
     if loop:
         getElement(driver,By.XPATH,"//input[@value='Move to the next level?!']").click()
-        time.sleep(1)
-        start_game()
+        time.sleep(2)
+        start_game(driver)
 
-start_game(loop = True)
+driver = reopenBrowser()
+start_game(driver,loop = True)
 
 
 
