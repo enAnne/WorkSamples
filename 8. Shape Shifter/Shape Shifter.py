@@ -59,13 +59,16 @@ def reopenBrowser():
     driver.get("https://www.neopets.com/medieval/shapeshifter.phtml")
     return driver
 
-def start_game(driver,loop = True):
+def start_game(driver, play = True, loop = True, force = False):
     
     """=================================================================
     # Getting Puzzle
     ================================================================="""
     start = time.time()
     
+    if elementExists(driver,By.XPATH,"//table/tbody/tr/td[2]/p[2]/table/tbody/tr[1]/td/b"):
+        driver.get("https://www.neopets.com/medieval/shapeshifter.phtml")
+        
     # Get the Pieces sequence
     pieces = []
     for e in getElements(driver,"//table/tbody/tr/td[2]/center[2]/table/tbody/tr/td/table/tbody/tr/td/img"):
@@ -77,10 +80,11 @@ def start_game(driver,loop = True):
     target = pieces.seq.iloc[-1]
     
     # Get the Board
-    board_size = len(getElements(driver,"//table/tbody/tr/td/p/table/tbody/tr"))
+    board_rows = len(getElements(driver,"//table/tbody/tr/td/p/table/tbody/tr"))
+    board_cols = len(getElements(driver,"//table/tbody/tr/td/p/table/tbody/tr[1]/td"))
     cells = []
-    for i in range(0,board_size):
-        for j in range(0,board_size):
+    for i in range(0,board_rows):
+        for j in range(0,board_cols):
             piece = getElement(driver,By.NAME,'i'+str(j)+'_'+str(i)).get_attribute("src")
             piece = getPiece(piece)
             cell = {"i":i, "j":j, "piece":piece}
@@ -106,8 +110,8 @@ def start_game(driver,loop = True):
     shapes_block = pd.DataFrame(shapes_block)
     shapes_block = shapes_block[shapes_block.block==1]
     shapes = shapes_block[['shape_nr','rows','cols']].drop_duplicates()
-    shapes['max_row'] = board_size - shapes.rows
-    shapes['max_col'] = board_size - shapes.cols
+    shapes['max_row'] = board_rows - shapes.rows
+    shapes['max_col'] = board_cols - shapes.cols
     
     end = time.time()
     print("Get puzzle pieces:", end-start)
@@ -118,7 +122,7 @@ def start_game(driver,loop = True):
     start = time.time()
 
     # Variables
-    lists = [list(shapes.shape_nr), list(range(0,board_size)), list(range(0,board_size))]
+    lists = [list(shapes.shape_nr), list(range(0,board_rows)), list(range(0,board_cols))]
     shapes_cell = pd.DataFrame(list(itertools.product(*lists)), columns=['shape_nr', 'row', 'col'])
     shapes_cell['max_row'] = shapes_cell.shape_nr.map(shapes.set_index('shape_nr').max_row)
     shapes_cell['max_col'] = shapes_cell.shape_nr.map(shapes.set_index('shape_nr').max_col)
@@ -179,61 +183,86 @@ def start_game(driver,loop = True):
     
     # Define Linear Programming Solver
     m = GEKKO(remote=False)
-    x = m.Array(m.Var,len(variables),value=0,lb=0,ub=100,integer=True)
-    m.qobj(weights,x=x,otype='max') # Objective function
+    x = m.Array(m.Var,len(variables),value=0,lb=0,ub=1,integer=True)
+    #m.qobj(weights,x=x,otype='max') # Objective function
     for i,var in enumerate(variables):
         if var.find('var_c')==0 and var.find('int')>0:
-            x[i].upper = 200
+            x[i].upper = 10000
         elif var.find('var_c')==0:
             init = cells.loc[cells.var_c==var,'seq'].values[0]
             x[i].value = init
             x[i].lower = init
             x[i].upper = init
+            print("Initial", var, "=", init)
     m.axb(coefficients,RHS,x=x,etype='=')
-    m.options.solver = 1
-    m.options.MAX_ITER = 100
     
     end = time.time()
     print("Create solver:", end-start)
     
     """=================================================================
-    # Run solver
+    # Force solver OR Run solver
     ================================================================="""
-    # Run Solver
-    start = time.time()
-    m.solve(disp=False)
-    end = time.time()
-    print("Run solver:", end-start)
+    if force:
+        permutations = shapes_cell.groupby('shape_nr').var_s_c.unique()
+        shapes_permutations = list(itertools.product(*list(permutations)))
+        for permutation in shapes_permutations:
+            for i,var in enumerate(variables):
+                if var in permutation:
+                    x[i].value = 1
+                    x[i].lower = 1
+                    x[i].upper = 1
+            try:
+                m.solve(disp=True)
+                solved = True
+            except:
+                solved = False
+                print( "Not solvable with ", permutation )
+            if solved:
+                print( "Solvable with ", permutation )
+                break
+    else:
+        start = time.time()
+        m.options.solver = 1
+        m.options.MAX_ITER = 1
+        m.options.MAX_TIME = 100000
+        #m.options.COLDSTART = 2
+        m.solve(disp=True)
+        end = time.time()
+        # m.open_folder()
+        print("Run solver:", end-start)
     
     """=================================================================
     # Play Game
     ================================================================="""
-    start = time.time()
-    a = ActionChains(driver)
-    for var,ass in zip(variables,x):
-        if ass.value[0] > 0.5:
-            shape_cell = shapes_cell.loc[shapes_cell.var_s_c==var]
-            if len(shape_cell) > 0:
-                row = shape_cell.row.values[0]
-                col = shape_cell.col.values[0]
-                print('i'+str(col)+'_'+str(row))
-                e = getElement(driver,By.NAME,'i'+str(col)+'_'+str(row))
-                time.sleep(1)
-                a.move_to_element(e).perform()
-                e.click()
-    end = time.time()
-    print("Play game:", end-start)
-    
-    if loop:
-        getElement(driver,By.XPATH,"//input[@value='Move to the next level?!']").click()
-        time.sleep(2)
-        start_game(driver)
+    if play:
+        start = time.time()
+        a = ActionChains(driver)
+        results = pd.DataFrame({"var":variables,"result":x}).set_index('var')
+        results['result'] = results.result.apply(lambda x:x.value[0])
+        results = results[results.result==1]
+        shapes_cell['result'] = shapes_cell.var_s_c.map(results.result)
+        shapes_cell_chosen = shapes_cell.dropna(subset=['result'])
+        for i,shape_cell in shapes_cell_chosen.iterrows():
+            row = shape_cell.row
+            col = shape_cell.col
+            print("Var:", shape_cell.var_s_c)
+        for i,shape_cell in shapes_cell_chosen.iterrows():
+            row = shape_cell.row
+            col = shape_cell.col
+            print("Placing shape:", shape_cell.shape_nr,'on i'+str(row)+'-j'+str(col))
+            e = getElement(driver,By.NAME,'i'+str(col)+'_'+str(row))
+            a.move_to_element(e).perform()
+            e.click()
+        end = time.time()
+        print("Play game:", end-start)
+        
+        if loop:
+            getElement(driver,By.XPATH,"//input[@value='Move to the next level?!']").click()
+            time.sleep(2)
+            start_game(driver)
 
 driver = reopenBrowser()
-start_game(driver,loop = True)
-
-
-
+start_game(driver, play = True, loop = True, force = False)
 
 
 
