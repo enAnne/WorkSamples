@@ -2,6 +2,8 @@
 """
 Created on Wed Feb 23 17:16:27 2022
 
+https://developers.google.com/optimization/scheduling/employee_scheduling
+
 @author: eeann
 """
 
@@ -20,6 +22,7 @@ from selenium.common.exceptions import StaleElementReferenceException, ElementCl
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
+
 
 def getElement(driver,eType,eString,tWait=0,maxWait=10):
     if tWait > 0:
@@ -50,6 +53,7 @@ def reopenBrowser():
     driver.maximize_window()
     # Login to Neopets account
     driver.get("https://www.neopets.com")
+    time.sleep(2)
     getElement(driver,By.XPATH,"//button[text()='Login']").click()
     getElement(driver,By.NAME,"username").send_keys('enAnne') 
     getElement(driver,By.NAME,'password').send_keys('en900804') 
@@ -59,7 +63,7 @@ def reopenBrowser():
     driver.get("https://www.neopets.com/medieval/shapeshifter.phtml")
     return driver
 
-def start_game(driver, play = True, loop = True, force = False):
+def start_game(driver, play = True, loop = False, force = False, max_iter=1000000, max_time=1000000):
     
     """=================================================================
     # Getting Puzzle
@@ -117,7 +121,7 @@ def start_game(driver, play = True, loop = True, force = False):
     print("Get puzzle pieces:", end-start)
         
     """=================================================================
-    # Creating solver
+    # Defining Variables and Constraints
     ================================================================="""
     start = time.time()
 
@@ -181,23 +185,8 @@ def start_game(driver, play = True, loop = True, force = False):
     RHS = constraints.RHS.values
     weights = np.ones(len(variables))
     
-    # Define Linear Programming Solver
-    m = GEKKO(remote=False)
-    x = m.Array(m.Var,len(variables),value=0,lb=0,ub=1,integer=True)
-    #m.qobj(weights,x=x,otype='max') # Objective function
-    for i,var in enumerate(variables):
-        if var.find('var_c')==0 and var.find('int')>0:
-            x[i].upper = 10000
-        elif var.find('var_c')==0:
-            init = cells.loc[cells.var_c==var,'seq'].values[0]
-            x[i].value = init
-            x[i].lower = init
-            x[i].upper = init
-            print("Initial", var, "=", init)
-    m.axb(coefficients,RHS,x=x,etype='=')
-    
     end = time.time()
-    print("Create solver:", end-start)
+    print("Defining Variables/Constraints:", end-start)
     
     """=================================================================
     # Force solver OR Run solver
@@ -206,6 +195,21 @@ def start_game(driver, play = True, loop = True, force = False):
         permutations = shapes_cell.groupby('shape_nr').var_s_c.unique()
         shapes_permutations = list(itertools.product(*list(permutations)))
         for permutation in shapes_permutations:
+            # Define Linear Programming Solver
+            m = GEKKO(remote=False)
+            x = m.Array(m.Var,len(variables),value=0,lb=0,ub=1,integer=True)
+            for i,var in enumerate(variables):
+                if var.find('var_c')==0 and var.find('int')>0:
+                    x[i].upper = 10000
+                elif var.find('var_c')==0:
+                    init = cells.loc[cells.var_c==var,'seq'].values[0]
+                    x[i].value = init
+                    x[i].lower = init
+                    x[i].upper = init
+                    print("Initial", var, "=", init)
+            m.axb(coefficients,RHS,x=x,etype='=')
+            
+            # Force assignment variables
             for i,var in enumerate(variables):
                 if var in permutation:
                     x[i].value = 1
@@ -221,14 +225,35 @@ def start_game(driver, play = True, loop = True, force = False):
                 print( "Solvable with ", permutation )
                 break
     else:
+        # Run solver
         start = time.time()
+        # Define Linear Programming Solver
+        m = GEKKO(remote=False)
+        x = m.Array(m.Var,len(variables),value=0,lb=0,ub=1,integer=True)
+        #m.qobj(weights,x=x,otype='max') # Objective function
+        for i,var in enumerate(variables):
+            if var.find('var_c')==0 and var.find('int')>0:
+                x[i].upper = 10000
+            elif var.find('var_c')==0:
+                init = cells.loc[cells.var_c==var,'seq'].values[0]
+                x[i].value = init
+                x[i].lower = init
+                x[i].upper = init
+                print("Initial", var, "=", init)
+        m.axb(coefficients,RHS,x=x,etype='=')
+        m.solver_options = ['minlp_maximum_iterations 1000000000']
+        #m.options.IMODE = 3
         m.options.solver = 1
-        m.options.MAX_ITER = 1
-        m.options.MAX_TIME = 100000
+        #m.options.DIAGLEVEL = 0
+        m.options.MAX_ITER = max_iter
+        m.options.MAX_TIME = max_time
         #m.options.COLDSTART = 2
         m.solve(disp=True)
         end = time.time()
         # m.open_folder()
+        print("Solution found:", m.options.APPSTATUS)
+        if m.options.APPSTATUS == 0:
+            print("Reason: ",m.options.APPINFO)
         print("Run solver:", end-start)
     
     """=================================================================
@@ -262,8 +287,7 @@ def start_game(driver, play = True, loop = True, force = False):
             start_game(driver)
 
 driver = reopenBrowser()
-start_game(driver, play = True, loop = True, force = False)
-
+start_game(driver, play = True, loop = False, force = False)
 
 
 

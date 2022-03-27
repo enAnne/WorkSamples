@@ -9,7 +9,7 @@ Monash University - Matrix operations with Matlab
 4th job at Mastercard - Linear Programming with Gekko library and SimpleGUI library
 5th job at Cognizant - That anyone can learn anything with an open mind, Google, and grit.
 
-Solving my favourite childhood puzzle using linear programming and automation.
+Solving my favourite childhood puzzle using Python Gekko (linear programming) and Selenium (web automation).
  
 ## Challenge
 In Wordle, you have 6 tries to guess the correct word. In Absurdle - unlimited.<br />

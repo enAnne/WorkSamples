@@ -54,7 +54,7 @@ def explore_table (df, pdf, printInfo = True, columns_df = pd.DataFrame()):
     if printInfo : # Only print the df.info() on the first batch
         print( df.info(verbose=True,null_counts=True) )
     
-    for column in df.columns: # Go through each column in the df, starting from currentPosition
+    for i, column in enumerate(df.columns): # Go through each column in the df, starting from currentPosition
         columnName = column
         print(column)
         columnNameToDisplay = column
@@ -80,7 +80,7 @@ def explore_table (df, pdf, printInfo = True, columns_df = pd.DataFrame()):
                     patches, texts = plt.pie(sizes, shadow=True, startangle=140)
                     plt.legend(patches, labels, loc="best")
                     plt.axis('equal')
-                    plt.title(columnNameToDisplay+nanPercentageString)
+                    plt.title(str(i)+'. '+columnNameToDisplay+nanPercentageString)
                     pdf.savefig()
                     plt.close()
                 # Otherwise, print statistics for the categories in the column.
@@ -90,7 +90,7 @@ def explore_table (df, pdf, printInfo = True, columns_df = pd.DataFrame()):
                     columnStats = columnStats[0:8] # Print only top 8 rows of data stats
                     plt.figure(figsize=(9,2)) # Put dataframe in a figure so that it can be printed into PDF
                     ax=plt.subplot(111)
-                    ax.title.set_text(columnNameToDisplay) 
+                    ax.title.set_text(str(i)+'. '+columnNameToDisplay) 
                     ax.axis('off')                    
                     r = columnStats.shape[0]
                     c = columnStats.shape[1]
@@ -101,13 +101,13 @@ def explore_table (df, pdf, printInfo = True, columns_df = pd.DataFrame()):
                     plt.close()
             
             # For numerical & date/time columns, draw histogram
-            elif (df[column].dtype=="int") | (df[column].dtype=="float") | (df[column].dtype=="<M8[ns]"):
+            elif (df[column].dtype=="int") | (str(df[column].dtype).find("float")>-1) | (df[column].dtype=="<M8[ns]"):
                 plt.figure(figsize=(9,4))
                 percentileLower = df[column].dropna().quantile(0.01) # Remove negative outliers from the X axis range
                 percentileUpper = df[column].dropna().quantile(0.99) # Remove positive outliers from the X axis range
                 df[column][pd.notnull(df[column])] = df[column][pd.notnull(df[column])].apply(lambda x: min( max(x,percentileLower), percentileUpper) )   
                 df[column][pd.notnull(df[column])].hist()            
-                plt.title(columnNameToDisplay+nanPercentageString)  
+                plt.title(str(i)+'. '+columnNameToDisplay+nanPercentageString)  
                 pdf.savefig()
                 plt.close()
             
