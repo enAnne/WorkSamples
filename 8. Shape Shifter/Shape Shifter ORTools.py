@@ -82,9 +82,12 @@ def start_game(driver, play = True, loop = False, force = False, max_iter=100000
     pieces = pd.DataFrame({"piece":pieces, "seq":list(range(1,len(pieces)+1))})
     target = pieces.seq.iloc[-1]
     
-    # Get the Board
-    board_rows = len(getElements(driver,"//table/tbody/tr/td/p/table/tbody/tr"))
-    board_cols = len(getElements(driver,"//table/tbody/tr/td/p/table/tbody/tr[1]/td"))
+    # Get the Board (level 40 and above)
+    board_rows = len(getElements(driver,"/html/body/div[3]/div[3]/table/tbody/tr/td[2]/table/tbody/tr"))
+    board_cols = len(getElements(driver,"/html/body/div[3]/div[3]/table/tbody/tr/td[2]/table/tbody/tr[1]/td"))
+    # Get the Board (below level 40)
+    #board_rows = len(getElements(driver,"//table/tbody/tr/td/p/table/tbody/tr"))
+    #board_cols = len(getElements(driver,"//table/tbody/tr/td/p/table/tbody/tr[1]/td"))
     cells = []
     for i in range(0,board_rows):
         for j in range(0,board_cols):
@@ -102,7 +105,8 @@ def start_game(driver, play = True, loop = False, force = False, max_iter=100000
     for s in range(0,nrShapes):
         path = "//table/tbody/tr/td[2]/center[3]/center/table/tbody/tr["+str((s-1)//8+1)+"]/td["+str((s-1)%8+1)+"]/table/tbody/"
         if s == 0:
-            path = "//table/tbody/tr/td[2]/center[3]/p/table/tbody/tr/td/table/tbody/"
+            #path = "//table/tbody/tr/td[2]/center[3]/p/table/tbody/tr/td/table/tbody/" # below level 40
+            path = "//table/tbody/tr/td[2]/center[3]/table/tbody/tr/td/table/tbody/" # above level 40
         rows = len(getElements(driver, path+"tr"))
         cols = len(getElements(driver, path+"tr[1]/td"))
         for i in range(0,rows):
@@ -123,7 +127,8 @@ def start_game(driver, play = True, loop = False, force = False, max_iter=100000
     # Defining Variables and Constraints
     ================================================================="""
     start = time.time()
-    solver = pywraplp.Solver('Solve Puzzle', pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING)
+    #solver = pywraplp.Solver('Solve Puzzle', pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING)
+    solver = pywraplp.Solver.CreateSolver('SCIP')
     
     # Define Variables in DataFrames
     lists = [list(shapes.shape_nr), list(range(0,board_rows)), list(range(0,board_cols))]
@@ -170,7 +175,8 @@ def start_game(driver, play = True, loop = False, force = False, max_iter=100000
     
     end = time.time()
     print("Defining Variables/Constraints:", end-start)
-    #print(solver.ExportModelAsLpFormat(False).replace('\\', '').replace(',_', ','), sep='\n')
+    with open(r'C:\Users\eeann\OneDrive\Documents\GitHub\WorkSamples\8. Shape Shifter\Puzzle.txt', 'w') as f:
+        f.write(solver.ExportModelAsLpFormat(False).replace('\\', '').replace(',_', ','))
     
     """=================================================================
     # Run solver
