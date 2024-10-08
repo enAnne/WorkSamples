@@ -1,13 +1,13 @@
 # Shape Shifter
-Putting together a few little things I picked up over the years, through guidance or self-exploration:
-Primary School - Solving Neopets ShapeShifter game manually 
-High School - Even/Odd numbers, Algebra, Modulus
-Monash University - Matrix operations with Matlab
-1st job at Quintiq - Optimization / Linear Programming with Quill
-2nd job at 2X Marketing - Data manipulation with Python
-3rd job at Mercedes - Browser automation & Web scraping with Selenium library
-4th job at Mastercard - Linear Programming with Gekko library and SimpleGUI library
-5th job at Cognizant - That anyone can learn anything with an open mind, Google, and grit.
+Putting together a few little things I picked up over the years, through guidance or self-exploration:<br />
+Primary School - Solving Neopets ShapeShifter game manually <br />
+High School - Even/Odd numbers, Algebra, Modulus<br />
+Monash University - Matrix operations with Matlab<br />
+1st job at Quintiq - Optimization / Linear Programming with Quill<br />
+2nd job at 2X Marketing - Data manipulation with Python<br />
+3rd job at Mercedes - Browser automation & Web scraping with Selenium library<br />
+4th job at Mastercard - Linear Programming with Gekko library and SimpleGUI library<br />
+5th job at Cognizant - That anyone can learn anything with an open mind, Google, and grit.<br />
 
 Solving my favourite childhood puzzle using Python Gekko (linear programming) and Selenium (web automation).
  
