@@ -53,13 +53,14 @@ def reopenBrowser():
     # Login to Neopets account
     driver.get("https://www.neopets.com")
     time.sleep(2)
+    #getElement(driver,By.XPATH,"//button[text()='CONTINUE TO SITE']").click()
     getElement(driver,By.XPATH,"//button[text()='Login']").click()
-    getElement(driver,By.NAME,"username").send_keys('enAnne') 
-    getElement(driver,By.NAME,'password').send_keys('en900804') 
-    getElement(driver,By.XPATH,"//input[@id='loginButton']").click()
+    getElement(driver,By.NAME,"username").send_keys('testing_123_eeann') 
+    getElement(driver,By.NAME,'password').send_keys('!Test1234') 
+    getElement(driver,By.XPATH,"//button[@id='loginButton']").click()
     # Go to ShapeShifter page
     time.sleep(2)
-    driver.get("https://www.neopets.com/medieval/shapeshifter.phtml")
+    driver.get("https://www.neopets.com/medieval/shapeshifter_index.phtml")
     return driver
 
 def start_game(driver, play = True, loop = False, force = False, max_iter=1000000, max_time=1000000):
@@ -198,29 +199,32 @@ def start_game(driver, play = True, loop = False, force = False, max_iter=100000
     """=================================================================
     # Play Game
     ================================================================="""
-    if play:
-        start = time.time()
-        a = ActionChains(driver)
-        results = pd.DataFrame({"variable":solver.variables()})
-        results['var'] = results.variable.apply(lambda x:x.name())
-        results['result'] = results.variable.apply(lambda x:x.solution_value())
-        results_viewable = results[['var','result']]
-        results = results[results.result==1].set_index('var')
-        shapes_cell['result'] = shapes_cell.var_s_c.map(results.result)
-        shapes_cell_chosen = shapes_cell.dropna(subset=['result'])
-        for i,shape_cell in shapes_cell_chosen.iterrows():
-            row = shape_cell.row
-            col = shape_cell.col
-            print("Var:", shape_cell.var_s_c)
-        for i,shape_cell in shapes_cell_chosen.iterrows():
-            row = shape_cell.row
-            col = shape_cell.col
-            print("Placing shape:", shape_cell.shape_nr,'on i'+str(row)+'-j'+str(col))
+    
+    start = time.time()
+    results = pd.DataFrame({"variable":solver.variables()})
+    results['var'] = results.variable.apply(lambda x:x.name())
+    results['result'] = results.variable.apply(lambda x:x.solution_value())
+    results_viewable = results[['var','result']]
+    results = results[results.result==1].set_index('var')
+    shapes_cell['result'] = shapes_cell.var_s_c.map(results.result)
+    shapes_cell_chosen = shapes_cell.dropna(subset=['result'])
+    for i,shape_cell in shapes_cell_chosen.iterrows():
+        row = shape_cell.row
+        col = shape_cell.col
+        print("Var:", shape_cell.var_s_c)
+    for i,shape_cell in shapes_cell_chosen.iterrows():
+        row = shape_cell.row
+        col = shape_cell.col
+        print("Placing shape:", shape_cell.shape_nr,'on row '+str(row)+', col '+str(col))
+        
+        if play:
             e = getElement(driver,By.NAME,'i'+str(col)+'_'+str(row))
+            a = ActionChains(driver)
             a.move_to_element(e).perform()
             e.click()
-        end = time.time()
-        print("Play game:", end-start)
+            
+    end = time.time()
+    print("Play game:", end-start)
     
     if loop:
         getElement(driver,By.XPATH,"//input[@value='Move to the next level?!']").click()
@@ -231,7 +235,44 @@ driver = reopenBrowser()
 start_game(driver, play = True, loop = True, force = False)
 
 
+"""
+================================================================================
+ Fail Safe
+================================================================================
+"""
 
+test = """Var: var_s4_c4-3
+Var: var_s5_c4-3
+Var: var_s6_c1-5
+Var: var_s7_c5-4
+Var: var_s8_c0-5
+Var: var_s9_c1-4
+Var: var_s10_c2-0
+Var: var_s11_c5-0
+Var: var_s12_c6-2
+Var: var_s13_c1-5
+Var: var_s14_c2-1
+Var: var_s15_c2-0
+Var: var_s16_c5-4
+Var: var_s17_c2-5
+"""
+
+shapes_cell_chosen = pd.DataFrame([x[10:].replace('c','').split('_') for x in test.splitlines()])
+shapes_cell_chosen.columns = ['shape_nr','row-col']
+shapes_cell_chosen['row'] = shapes_cell_chosen['row-col'].str.split('-').str[0]
+shapes_cell_chosen['col'] = shapes_cell_chosen['row-col'].str.split('-').str[1]
+
+driver = reopenBrowser()
+
+for i,shape_cell in shapes_cell_chosen.iterrows():
+    a = ActionChains(driver)
+    row = shape_cell.row
+    col = shape_cell.col
+    print("Placing shape:", shape_cell.shape_nr,'on i'+str(row)+'-j'+str(col))
+    e = getElement(driver,By.NAME,'i'+str(col)+'_'+str(row))
+    a.move_to_element(e).perform()
+    e.click()
+    time.sleep(2)
 
 
 
